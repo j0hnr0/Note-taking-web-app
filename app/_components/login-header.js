@@ -14,7 +14,7 @@ const interReg = localFont({
 
 export default function LoginHeader() {
   return (
-    <div>
+    <>
       <div className="flex justify-center items-center">
         <Logo/>
       </div>
@@ -30,6 +30,6 @@ export default function LoginHeader() {
           Please log in to continue
         </h2>
       </div>
-    </div>
+    </>
   );
 }
