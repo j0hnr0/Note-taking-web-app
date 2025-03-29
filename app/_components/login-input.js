@@ -1,14 +1,14 @@
 import localFont from "next/font/local";
 
 const interMed = localFont({
-    src: "../../public/fonts/inter/static/Inter_18pt-Medium.ttf",
-    display: "swap",
-  });
-  
-  const interReg = localFont({
-    src: "../../public/fonts/inter/static/Inter_18pt-Regular.ttf",
-    display: "swap",
-  });
+  src: "../../public/fonts/inter/static/Inter_18pt-Medium.ttf",
+  display: "swap",
+});
+
+const interReg = localFont({
+  src: "../../public/fonts/inter/static/Inter_18pt-Regular.ttf",
+  display: "swap",
+});
 
 export default function LoginInput({ label, placeholder, type, identifier }) {
   return (
