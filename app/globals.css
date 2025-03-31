@@ -7,4 +7,6 @@
     --color-custom-neutral-600: #525866;
     --color-custom-neutral-300: #CACFD8;
     --color-custom-blue-500: #335CFF;
+    --breakpoint-custom-768px: 769px;
+    --breakpoint-custom-475px: 476px;
 }

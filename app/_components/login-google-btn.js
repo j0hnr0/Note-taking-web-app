@@ -9,7 +9,7 @@ export default function LoginGoogleBtn() {
   return (
     <button
       type="button"
-      className="mt-4 w-full rounded-xl py-[15px] flex justify-center items-center gap-4 border-[1px] border-custom-neutral-300"
+      className="mt-4 w-full rounded-xl py-3 flex justify-center items-center gap-4 border-[1px] border-custom-neutral-300 cursor-pointer"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

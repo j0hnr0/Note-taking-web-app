@@ -25,7 +25,7 @@ export default function LoginForm() {
       <div className="mt-4">
         <button
           type="submit"
-          className="w-full py-3 text-center bg-custom-blue-500 rounded-lg"
+          className="w-full py-3 text-center bg-custom-blue-500 rounded-lg cursor-pointer"
         >
           <h5
             className={`${interSemi.className} antialiased font-semibold text-base text-white`}
