@@ -1,15 +1,15 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 
 export const DataContext = createContext(null);
 
 export function DataProvider({ children }) {
   const [isForgotClicked, setIsForgotClicked] = useState(false);
 
-  function updateIsForgot() {
+  const updateIsForgot = useCallback(() => {
     setIsForgotClicked((prevState) => !prevState);
-  }
+  }, []);
 
   const value = {
     isForgotClicked,
