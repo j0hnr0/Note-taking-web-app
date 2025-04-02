@@ -1,4 +1,8 @@
+"use client";
+
 import localFont from "next/font/local";
+import { useContext } from "react";
+import { DataContext } from "../_context/DataContext";
 
 const interMed = localFont({
   src: "../../public/fonts/inter/static/Inter_18pt-Medium.ttf",
@@ -11,6 +15,8 @@ const interReg = localFont({
 });
 
 export default function LoginInput({ label, placeholder, type, identifier }) {
+  const { updateIsForgot } = useContext(DataContext);
+
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -21,11 +27,13 @@ export default function LoginInput({ label, placeholder, type, identifier }) {
           {label}
         </label>
         {identifier === "password" && (
-          <h5
+          <button
+            type="button"
+            onClick={updateIsForgot}
             className={`${interReg.className} antialiased text-xs text-custom-neutral-600 underline cursor-pointer`}
           >
             Forgot
-          </h5>
+          </button>
         )}
       </div>
       <div className="relative">
