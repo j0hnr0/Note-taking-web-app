@@ -1,18 +1,7 @@
 "use client";
 
-import localFont from "next/font/local";
 import { useContext } from "react";
 import { DataContext } from "../_context/DataContext";
-
-const interMed = localFont({
-  src: "../../public/fonts/inter/static/Inter_18pt-Medium.ttf",
-  display: "swap",
-});
-
-const interReg = localFont({
-  src: "../../public/fonts/inter/static/Inter_18pt-Regular.ttf",
-  display: "swap",
-});
 
 export default function LoginInput({ label, placeholder, type, identifier }) {
   const { updateIsForgot } = useContext(DataContext);
@@ -22,7 +11,7 @@ export default function LoginInput({ label, placeholder, type, identifier }) {
       <div className="flex justify-between items-center">
         <label
           htmlFor={type}
-          className={`${interMed.className} antialiased font-medium text-sm text-custom-neutral-950`}
+          className="inter font-medium text-sm text-custom-neutral-950"
         >
           {label}
         </label>
@@ -30,7 +19,7 @@ export default function LoginInput({ label, placeholder, type, identifier }) {
           <button
             type="button"
             onClick={updateIsForgot}
-            className={`${interReg.className} antialiased text-xs text-custom-neutral-600 underline cursor-pointer`}
+            className="inter font-normal text-xs text-custom-neutral-600 underline cursor-pointer"
           >
             Forgot
           </button>
@@ -41,8 +30,8 @@ export default function LoginInput({ label, placeholder, type, identifier }) {
           id={type}
           name={type}
           placeholder={placeholder}
-          className={`${interReg.className} antialiased text-sm text-custom-neutral-950 w-full rounded-lg py-3 px-4 border-[1px] border-custom-neutral-300
-          focus:outline-none`}
+          className="inter font-normal text-sm text-custom-neutral-950 w-full rounded-lg py-3 px-4 border-[1px] border-custom-neutral-300
+          focus:outline-none"
         />
 
         {identifier === "password" && (

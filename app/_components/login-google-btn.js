@@ -1,10 +1,3 @@
-import localFont from "next/font/local";
-
-const interMed = localFont({
-  src: "../../public/fonts/inter/static/Inter_18pt-Medium.ttf",
-  display: "swap",
-});
-
 export default function LoginGoogleBtn() {
   return (
     <button
@@ -26,7 +19,7 @@ export default function LoginGoogleBtn() {
         />
       </svg>
       <h5
-        className={`${interMed.className} antialiased font-medium text-custom-neutral-950 text-base`}
+        className="inter font-medium text-custom-neutral-950 text-base"
       >
         Google
       </h5>

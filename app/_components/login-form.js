@@ -1,10 +1,4 @@
 import LoginInput from "./login-input";
-import localFont from "next/font/local";
-
-const interSemi = localFont({
-  src: "../../public/fonts/inter/static/Inter_18pt-SemiBold.ttf",
-  display: "swap",
-});
 
 export default function LoginForm() {
   return (
@@ -28,7 +22,7 @@ export default function LoginForm() {
           className="w-full py-3 text-center bg-custom-blue-500 rounded-lg cursor-pointer"
         >
           <h5
-            className={`${interSemi.className} antialiased font-semibold text-base text-white`}
+            className="inter font-semibold text-base text-white"
           >
             Login
           </h5>

@@ -10,3 +10,7 @@
     --breakpoint-custom-768px: 769px;
     --breakpoint-custom-475px: 476px;
 }
+
+.inter {
+    font-family: var(--font-inter);
+}
