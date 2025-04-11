@@ -1,4 +1,4 @@
-export default function LoginGoogleBtn() {
+export default function AuthGoogleBtn() {
   return (
     <button
       type="button"

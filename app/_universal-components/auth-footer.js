@@ -1,8 +1,8 @@
-import LoginGoogleBtn from "./login-google-btn";
+import AuthGoogleBtn from "./auth-google-btn";
 import Link from "next/link";
 
 
-export default function LoginFooter() {
+export default function AuthFooter() {
   return (
     <>
       <hr className="mt-4 w-full border-custom-neutral-300 border-t-[1px]" />
@@ -13,7 +13,7 @@ export default function LoginFooter() {
           Or log in with:
         </h5>
       </div>
-      <LoginGoogleBtn />
+      <AuthGoogleBtn />
       <hr className="mt-4 w-full border-custom-neutral-300 border-t-[1px]" />
       <div className="mt-4 text-center">
         <h5

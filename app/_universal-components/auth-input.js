@@ -1,13 +1,15 @@
-"use client";
+import Link from "next/link";
 
-import { useContext } from "react";
-import { DataContext } from "../_context/DataContext";
-
-export default function LoginInput({ label, placeholder, type, identifier }) {
-  const { updateIsForgot } = useContext(DataContext);
-
+export default function AuthInput({
+  label,
+  placeholder,
+  type,
+  showForgot,
+  showEye,
+  className,
+}) {
   return (
-    <div>
+    <div className={className}>
       <div className="flex justify-between items-center">
         <label
           htmlFor={type}
@@ -15,14 +17,14 @@ export default function LoginInput({ label, placeholder, type, identifier }) {
         >
           {label}
         </label>
-        {identifier === "password" && (
-          <button
+        {showForgot && (
+          <Link
+            href="/forgot-password"
             type="button"
-            onClick={updateIsForgot}
             className="inter font-normal text-xs text-custom-neutral-600 underline cursor-pointer"
           >
             Forgot
-          </button>
+          </Link>
         )}
       </div>
       <div className="relative">
@@ -34,7 +36,7 @@ export default function LoginInput({ label, placeholder, type, identifier }) {
           focus:outline-none"
         />
 
-        {identifier === "password" && (
+        {showEye && (
           <div className="absolute top-3 right-4 bg-white pl-1.5">
             <button type="button" className="cursor-pointer">
               <svg

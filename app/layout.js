@@ -1,4 +1,3 @@
-import { DataProvider } from "./_context/DataContext";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -37,9 +36,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
-        <DataProvider>{children}</DataProvider>
-      </body>
+      <body className={`${inter.variable} antialiased`}>{children}</body>
     </html>
   );
 }
