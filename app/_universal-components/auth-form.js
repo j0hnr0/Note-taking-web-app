@@ -1,7 +1,8 @@
 import AuthButton from "./auth-button";
 import AuthInput from "./auth-input";
+import AuthPasswordInfo from "./auth-password-info";
 
-export default function AuthForm() {
+export default function AuthForm({ btnText, isLoginPage }) {
   return (
     <form className="mt-10">
       <div>
@@ -17,11 +18,13 @@ export default function AuthForm() {
         <AuthInput
           label="Password"
           type="password"
-          showForgot={true}
+          showForgot={isLoginPage}
           showEye={true}
         />
       </div>
-      <AuthButton btnText="Login" />
+      {!isLoginPage && <AuthPasswordInfo />}
+
+      <AuthButton btnText={btnText} />
     </form>
   );
 }
