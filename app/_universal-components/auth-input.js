@@ -7,6 +7,9 @@ export default function AuthInput({
   showForgot,
   showEye,
   className,
+  ref,
+  error,
+  ...props
 }) {
   return (
     <div className={className}>
@@ -32,12 +35,20 @@ export default function AuthInput({
           id={type}
           name={type}
           placeholder={placeholder}
+          type={type}
+          ref={ref}
           className="inter font-normal text-sm text-custom-neutral-950 w-full rounded-lg py-3 px-4 border-[1px] border-custom-neutral-300
           focus:outline-none"
+          {...props}
         />
+        {error && (
+          <span className="inter font-normal text-red-500 text-sm">
+            {error}
+          </span>
+        )}
 
         {showEye && (
-          <div className="absolute top-3 right-4 bg-white pl-1.5">
+          <div className="absolute top-3 right-4 bg-transparent pl-1.5">
             <button type="button" className="cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
