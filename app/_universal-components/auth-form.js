@@ -25,7 +25,17 @@ export default function AuthForm({ btnText, isLoginPage }) {
           type="email"
           identifier="email"
           error={errors.email?.message}
-          {...register("email", { required: "Email is required" })}
+          {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Please enter a valid email address",
+            },
+            maxLength: {
+              value: 100,
+              message: "Please enter a valid email address",
+            },
+          })}
         />
       </div>
 
@@ -35,6 +45,10 @@ export default function AuthForm({ btnText, isLoginPage }) {
           type="password"
           showForgot={isLoginPage}
           showEye={true}
+          error={errors.password?.message}
+          {...register("password", {
+            required: "Password is required",
+          })}
         />
       </div>
       {!isLoginPage && <AuthPasswordInfo />}
