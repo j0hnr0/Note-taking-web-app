@@ -10,7 +10,7 @@ export default function Home() {
         title="Welcome to Note"
         subTitle="Please log in to continue"
       />
-      <AuthForm btnText="Login" isLoginPage={true} />
+      <AuthForm btnText="Login" isLoginPage={true} createPasswordValidation={false} />
       <AuthFooter isLoginPage={true} />
     </AuthBackground>
   );

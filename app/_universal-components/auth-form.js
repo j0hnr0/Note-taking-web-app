@@ -5,25 +5,53 @@ import AuthButton from "./auth-button";
 import AuthInput from "./auth-input";
 import AuthPasswordInfo from "./auth-password-info";
 
-export default function AuthForm({ btnText, isLoginPage }) {
+export default function AuthForm({
+  btnText,
+  isLoginPage,
+  createPasswordValidation,
+}) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const passwordValidation = createPasswordValidation
+    ? {
+        required: "Password is required",
+        minLength: {
+          value: 8,
+          message: "Password must be at least 8 characters",
+        },
+        validate: {
+          hasLowercase: (value) =>
+            /[a-z]/.test(value) ||
+            "Password must contain at least one lowercase letter",
+          hasUppercase: (value) =>
+            /[A-Z]/.test(value) ||
+            "Password must contain at least one uppercase letter",
+          hasSpecialChar: (value) =>
+            /[^A-Za-z0-9]/.test(value) ||
+            "Password must contain at least one special character",
+          hasDigit: (value) =>
+            /[0-9]/.test(value) || "Password must contain at least one digit",
+        },
+      }
+    : {
+        required: "Password is required",
+      };
+
   function handleForm() {
     console.log("kiki do you love me");
   }
 
   return (
-    <form className="mt-10" onSubmit={handleSubmit(handleForm)}>
+    <form className="mt-10" onSubmit={handleSubmit(handleForm)} noValidate>
       <div>
         <AuthInput
-          label="Email"
+          label="Email Address"
           placeholder="email@example.com"
           type="email"
-          identifier="email"
           error={errors.email?.message}
           {...register("email", {
             required: "Email is required",
@@ -46,9 +74,7 @@ export default function AuthForm({ btnText, isLoginPage }) {
           showForgot={isLoginPage}
           showEye={true}
           error={errors.password?.message}
-          {...register("password", {
-            required: "Password is required",
-          })}
+          {...register("password", passwordValidation)}
         />
       </div>
       {!isLoginPage && <AuthPasswordInfo />}

@@ -10,7 +10,7 @@ export default function SignUp() {
         title="Create Your Account"
         subTitle="Sign up to start organizing your notes and boost your productivity."
       />
-      <AuthForm btnText="Sign up" isLoginPage={false} />
+      <AuthForm btnText="Sign up" isLoginPage={false} createPasswordValidation={true} />
       <AuthFooter isLoginPage={false} />
     </AuthBackground>
   );
