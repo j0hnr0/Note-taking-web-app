@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import EyeSlashIcon from "./eye-slash-icon";
 import EyeIcon from "./eye-icon";
+import clsx from "clsx";
 
 export default function AuthInput({
   label,
@@ -49,8 +50,14 @@ export default function AuthInput({
           placeholder={placeholder}
           type={showEye ? passwordInputType : type}
           ref={ref}
-          className="inter font-normal text-sm text-custom-neutral-950 w-full rounded-lg py-3 px-4 border-[1px] border-custom-neutral-300
-          focus:outline-none"
+          className={clsx(
+            `inter font-normal text-sm text-custom-neutral-950 w-full rounded-lg py-3 px-4 border-[1px]
+          focus:outline-none`,
+            {
+              "border-custom-neutral-300": !error,
+              "border-red-500": error,
+            }
+          )}
           {...props}
         />
         {error && (
