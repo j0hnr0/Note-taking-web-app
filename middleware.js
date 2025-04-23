@@ -16,16 +16,5 @@ export const config = {
     "/dashboard/:path*",
     "/profile/:path*",
 
-    // Exclude these paths from protection
-    '/((?!' + [
-        'api',
-        '_next/static',
-        '_next/image',
-        'favicon.ico',
-        '/',
-        'signup',
-        'reset-password',
-        'forgot-password'
-      ].join('|') + ').*)',
   ],
 };
