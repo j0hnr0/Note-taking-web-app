@@ -44,6 +44,7 @@ export const authOptions = {
       // Initial sign in
       if (user) {
         token.id = user.id;
+        token.email = user.email;
       }
       return token;
     },
@@ -52,6 +53,7 @@ export const authOptions = {
       // Send properties to the client
       if (session.user) {
         session.user.id = token.id;
+        session.user.email = token.email;
       }
       return session;
     },
