@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import AuthButton from "./auth-button";
 import AuthInput from "./auth-input";
 import AuthPasswordInfo from "./auth-password-info";
+import { useAuth } from "../contexts/auth-provider";
+import { useState } from "react";
 
 export default function AuthForm({
   btnText,
@@ -15,6 +17,10 @@ export default function AuthForm({
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const { register: registerUser } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState({ message: "", type: "" });
 
   const passwordValidation = createPasswordValidation
     ? {
@@ -41,8 +47,19 @@ export default function AuthForm({
         required: "Password is required",
       };
 
-  function handleForm() {
-    console.log("kiki do you love me");
+  async function handleForm(data) {
+    setIsLoading((prev) => !prev);
+    setStatus({ message: "", type: "" });
+
+    const result = await registerUser(data);
+
+    setIsLoading((prev) => !prev);
+
+    if (result.success) {
+      setStatus({ message: "Registration successful!", type: "success" });
+    } else {
+      setStatus({ message: result.error, type: "error" });
+    }
   }
 
   return (
