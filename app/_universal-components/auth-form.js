@@ -56,7 +56,10 @@ export default function AuthForm({
     setIsLoading((prev) => !prev);
 
     if (result.success) {
-      setStatus({ message: "Registration successful!", type: "success" });
+      setStatus({
+        message: "Registration successful!. You may now login",
+        type: "success",
+      });
     } else {
       setStatus({ message: result.error, type: "error" });
     }
@@ -95,8 +98,15 @@ export default function AuthForm({
         />
       </div>
       {!isLoginPage && <AuthPasswordInfo />}
+      {status.type === "success" && (
+        <div className="mt-2.5 flex justify-center">
+          <span className="inter font-normal text-green-700 text-sm">
+            {status.message}
+          </span>
+        </div>
+      )}
 
-      <AuthButton btnText={btnText} />
+      <AuthButton btnText={btnText} isLoading={isLoading} />
     </form>
   );
 }
