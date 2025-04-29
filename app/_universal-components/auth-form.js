@@ -6,6 +6,7 @@ import AuthInput from "./auth-input";
 import AuthPasswordInfo from "./auth-password-info";
 import { useAuth } from "../contexts/auth-provider";
 import { useState } from "react";
+import clsx from "clsx";
 
 export default function AuthForm({
   btnText,
@@ -18,7 +19,7 @@ export default function AuthForm({
     formState: { errors },
   } = useForm();
 
-  const { register: registerUser } = useAuth();
+  const { register: registerUser, login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState({ message: "", type: "" });
 
@@ -48,10 +49,15 @@ export default function AuthForm({
       };
 
   async function handleForm(data) {
+    let result;
     setIsLoading((prev) => !prev);
     setStatus({ message: "", type: "" });
 
-    const result = await registerUser(data);
+    if (isLoginPage) {
+      result = await login(data.email, data.password);
+    } else {
+      result = await registerUser(data);
+    }
 
     setIsLoading((prev) => !prev);
 
@@ -61,8 +67,15 @@ export default function AuthForm({
         type: "success",
       });
     } else {
-      setStatus({ message: result.error, type: "error" });
+      setStatus({
+        message:
+          result.error === "CredentialsSignin"
+            ? "Invalid email or password"
+            : result.error,
+        type: "error",
+      });
     }
+
   }
 
   return (
@@ -98,9 +111,14 @@ export default function AuthForm({
         />
       </div>
       {!isLoginPage && <AuthPasswordInfo />}
-      {status.type === "success" && (
+      {status.type && (
         <div className="mt-2.5 flex justify-center">
-          <span className="inter font-normal text-green-700 text-sm">
+          <span
+            className={clsx(`inter font-normal text-sm`, {
+              "text-green-700": status.type === "success",
+              "text-red-500": status.type === "error",
+            })}
+          >
             {status.message}
           </span>
         </div>
