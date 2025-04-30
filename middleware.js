@@ -13,8 +13,6 @@ export default withAuth({
 export const config = {
   matcher: [
     // Protect these paths
-    "/dashboard/:path*",
-    "/profile/:path*",
-
+    "/all-notes",
   ],
 };

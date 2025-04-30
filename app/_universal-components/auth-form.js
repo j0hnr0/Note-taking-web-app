@@ -7,6 +7,7 @@ import AuthPasswordInfo from "./auth-password-info";
 import { useAuth } from "../contexts/auth-provider";
 import { useState } from "react";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 
 export default function AuthForm({
   btnText,
@@ -19,6 +20,7 @@ export default function AuthForm({
     formState: { errors },
   } = useForm();
 
+  const router = useRouter();
   const { register: registerUser, login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState({ message: "", type: "" });
@@ -59,13 +61,15 @@ export default function AuthForm({
       result = await registerUser(data);
     }
 
-    setIsLoading((prev) => !prev);
-
     if (result.success) {
-      setStatus({
-        message: "Registration successful!. You may now login",
-        type: "success",
-      });
+      if (isLoginPage) {
+        router.push("/all-notes");
+      } else {
+        setStatus({
+          message: "Registration successful!. You may now login",
+          type: "success",
+        });
+      }
     } else {
       setStatus({
         message:
@@ -76,6 +80,7 @@ export default function AuthForm({
       });
     }
 
+    setIsLoading((prev) => !prev);
   }
 
   return (
