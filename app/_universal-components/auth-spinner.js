@@ -9,7 +9,7 @@ const LoadingSpinner = ({ size = 'md', color = 'primary' }) => {
 
   // Color classes
   const colorClasses = {
-    primary: 'border-blue-500',
+    primary: 'border-custom-blue-500',
     secondary: 'border-gray-500',
     success: 'border-green-500',
     danger: 'border-red-500',
