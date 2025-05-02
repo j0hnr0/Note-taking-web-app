@@ -52,7 +52,7 @@ export default function AuthForm({
 
   async function handleForm(data) {
     let result;
-    setIsLoading((prev) => !prev);
+    setIsLoading(true);
     setStatus({ message: "", type: "" });
 
     if (isLoginPage) {
@@ -80,7 +80,7 @@ export default function AuthForm({
       });
     }
 
-    setIsLoading((prev) => !prev);
+    setIsLoading(false);
   }
 
   return (
