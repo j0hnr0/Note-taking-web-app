@@ -12,16 +12,14 @@ import AuthSpinner from "./_universal-components/auth-spinner";
 export default function Home() {
   const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
-  const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
-      setIsNavigating(true);
       router.push("/all-notes");
     }
   }, [isAuthenticated, router]);
 
-  if (loading || isNavigating) {
+  if (loading || isAuthenticated) {
     return <AuthSpinner />;
   }
 
