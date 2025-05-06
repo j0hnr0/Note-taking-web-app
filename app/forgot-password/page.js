@@ -1,10 +1,10 @@
 'use client';
 
 import { useForm } from "react-hook-form";
-import AuthBackground from "../_universal-components/auth-background";
-import AuthButton from "../_universal-components/auth-button";
-import AuthHeader from "../_universal-components/auth-header";
-import AuthInput from "../_universal-components/auth-input";
+import AuthBackground from "../_universal-components/_auth-components/auth-background";
+import AuthButton from "../_universal-components/_auth-components/auth-button";
+import AuthHeader from "../_universal-components/_auth-components/auth-header";
+import AuthInput from "../_universal-components/_auth-components/auth-input";
 
 export default function ForgotPassword() {
   const {

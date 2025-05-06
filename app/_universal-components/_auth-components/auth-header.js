@@ -1,4 +1,4 @@
-import Logo from "./logo";
+import Logo from "../_svg-components/logo";
 
 export default function AuthHeader({ title, subTitle }) {
   return (

@@ -1,7 +1,7 @@
-import AuthBackground from "../_universal-components/auth-background";
-import AuthFooter from "../_universal-components/auth-footer";
-import AuthForm from "../_universal-components/auth-form";
-import AuthHeader from "../_universal-components/auth-header";
+import AuthBackground from "../_universal-components/_auth-components/auth-background";
+import AuthFooter from "../_universal-components/_auth-components/auth-footer";
+import AuthForm from "../_universal-components/_auth-components/auth-form";
+import AuthHeader from "../_universal-components/_auth-components/auth-header";
 
 export default function SignUp() {
   return (

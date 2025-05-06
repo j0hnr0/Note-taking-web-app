@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import EyeSlashIcon from "./eye-slash-icon";
-import EyeIcon from "./eye-icon";
+import EyeSlashIcon from "../_svg-components/eye-slash-icon";
+import EyeIcon from "../_svg-components/eye-icon";
 import clsx from "clsx";
 
 export default function AuthInput({

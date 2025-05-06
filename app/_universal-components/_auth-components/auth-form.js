@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import AuthButton from "./auth-button";
 import AuthInput from "./auth-input";
 import AuthPasswordInfo from "./auth-password-info";
-import { useAuth } from "../contexts/auth-provider";
+import { useAuth } from "../../contexts/auth-provider";
 import { useState } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
