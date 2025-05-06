@@ -1,3 +1,5 @@
+import ArchiveSvg from "./_svg-components/archive-svg";
+import HomeSvg from "./_svg-components/home-svg";
 import Logo from "./logo";
 import NavMenu from "./nav-menu";
 
@@ -7,8 +9,8 @@ export default function SideNav() {
       <Logo />
       <nav className="mt-7">
         <ul>
-          <NavMenu href="/all-notes">All Notes</NavMenu>
-          <NavMenu href="/">Archived Notes</NavMenu>
+          <NavMenu svg={HomeSvg} href="/all-notes">All Notes</NavMenu>
+          <NavMenu svg={ArchiveSvg} href="/">Archived Notes</NavMenu>
         </ul>
       </nav>
     </aside>
