@@ -1,24 +1,19 @@
 "use client";
 
 import Header from "../_universal-components/_notes-components/header";
+import NotesList from "../_universal-components/_notes-components/notes-list";
 import SideNav from "../_universal-components/_notes-components/side-nav";
-// import { useAuth } from "../contexts/auth-provider";
 
 export default function AllNotes() {
-  // const { logout } = useAuth();
-
   return (
-    <div className="flex items-start">
+    <div className="flex items-start h-screen">
       <SideNav />
-      <Header />
-      {/* <div>
-        <button
-          onClick={logout}
-          className="cursor-pointer border-2 border-black"
-        >
-          LOGOUT
-        </button>
-      </div> */}
+      <div className="w-full h-full flex flex-col">
+        <Header />
+        <div className="h-full">
+          <NotesList />
+        </div>
+      </div>
     </div>
   );
 }
