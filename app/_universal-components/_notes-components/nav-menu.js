@@ -26,7 +26,7 @@ export default function NavMenu({ svg: Svg, href, children }) {
               "text-custom-neutral-700": pathname !== href,
             })}
           >
-            <Svg />
+            <Svg fill={pathname === href ? "#335CFF" : "#2B303B"} />
           </div>
           <span className="inter font-medium text-sm text-custom-neutral-950">
             {children}
