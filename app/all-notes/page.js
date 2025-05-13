@@ -1,4 +1,5 @@
 import Header from "../_universal-components/_notes-components/header";
+import MFooterMenu from "../_universal-components/_notes-components/mobile/m-footer-menu";
 import MHeader from "../_universal-components/_notes-components/mobile/m-header";
 import MNotesList from "../_universal-components/_notes-components/mobile/m-notes-list";
 import NotesList from "../_universal-components/_notes-components/notes-list";
@@ -13,6 +14,7 @@ export default function AllNotes() {
       {/* This will only display when screen size is < 1024px */}
       <MHeader />
       <MNotesList />
+      <MFooterMenu />
       {/* This will only display when screen size is < 1024px */}
 
       {/* This will only display when screen size is > 1024px*/}
