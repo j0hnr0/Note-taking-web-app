@@ -4,7 +4,8 @@ export default function MNotesList() {
   return (
     <section
       className="hidden py-6 px-8
-    max-custom-lg:block"
+    max-custom-lg:block
+    max-custom-sm:py-5 max-custom-md:px-4"
     >
       <h1 className="inter font-bold text-2xl text-custom-neutral-950">
         All Notes
