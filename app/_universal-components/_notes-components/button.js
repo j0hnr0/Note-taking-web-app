@@ -1,9 +1,15 @@
+"use client";
+
+import { useToggle } from "@/app/contexts/toggle-provider";
 import clsx from "clsx";
 
 export default function Button({ btnText, isLoading }) {
+  const { toggleCreateNewNote } = useToggle();
+
   return (
     <button
       type="button"
+      onClick={toggleCreateNewNote}
       disabled={isLoading}
       className={clsx("w-full py-3 text-center rounded-lg", {
         "bg-custom-blue-500 cursor-pointer": !isLoading,

@@ -1,10 +1,11 @@
 import Header from "../_universal-components/_notes-components/header";
+import MainContent from "../_universal-components/_notes-components/main-content";
 import MFloatingPlus from "../_universal-components/_notes-components/mobile/m-floating-plus";
 import MFooterMenu from "../_universal-components/_notes-components/mobile/m-footer-menu";
 import MHeader from "../_universal-components/_notes-components/mobile/m-header";
 import MNotesList from "../_universal-components/_notes-components/mobile/m-notes-list";
-import NotesList from "../_universal-components/_notes-components/notes-list";
 import SideNav from "../_universal-components/_notes-components/side-nav";
+import { ToggleProvider } from "../contexts/toggle-provider";
 
 export default function AllNotes() {
   return (
@@ -26,9 +27,9 @@ export default function AllNotes() {
       max-custom-lg:hidden"
       >
         <Header />
-        <div className="h-full">
-          <NotesList />
-        </div>
+        <ToggleProvider>
+          <MainContent />
+        </ToggleProvider>
       </div>
       {/* This will only display when screen size is > 1024px*/}
     </div>
