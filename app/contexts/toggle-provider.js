@@ -8,7 +8,7 @@ export function ToggleProvider({ children }) {
   const [isCreateNewNoteOpen, setIsCreateNewNoteOpen] = useState(false);
 
   const toggleCreateNewNote = () => {
-    setIsCreateNewNoteOpen((prev) => !prev);
+    setIsCreateNewNoteOpen(true);
   };
 
   const value = {
