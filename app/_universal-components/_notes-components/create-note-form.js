@@ -1,5 +1,6 @@
 import ClockSvg from "../_svg-components/clock-svg";
 import TagSvg from "../_svg-components/tag-svg";
+import Button from "./button";
 
 export default function CreateNoteForm() {
   return (
@@ -48,6 +49,20 @@ export default function CreateNoteForm() {
           placeholder="Not yet saved"
           disabled
         />
+      </div>
+
+      <hr className="mt-4 w-full h-[1px] border-custom-neutral-200" />
+
+      <textarea
+        className="mt-4 w-full h-full resize-none text-custom-neutral-700 inter font-normal text-sm focus:outline-none"
+        placeholder="Start typing your note here..."
+      ></textarea>
+
+      <hr className="mt-4 w-full h-[1px] border-custom-neutral-200 " />
+
+      <div className="mt-4 flex justify-start gap-4">
+        <Button type="submit" btnText="Save Note" textColor="text-white" bgColor="bg-custom-blue-500" maxWidth="max-w-[99px]" />
+        <Button type="button" btnText="Cancel" textColor="text-custom-neutral-600" bgColor="bg-custom-neutral-100" maxWidth="max-w-[78px]" />
       </div>
     </form>
   );
