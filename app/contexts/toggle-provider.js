@@ -7,8 +7,12 @@ const ToggleContext = createContext(null);
 export function ToggleProvider({ children }) {
   const [isCreateNewNoteOpen, setIsCreateNewNoteOpen] = useState(false);
 
-  const toggleCreateNewNote = () => {
-    setIsCreateNewNoteOpen(true);
+  const toggleCreateNewNote = (toggle) => {
+    if (toggle === "open") {
+      setIsCreateNewNoteOpen(true);
+    } else {
+      setIsCreateNewNoteOpen(false);
+    }
   };
 
   const value = {

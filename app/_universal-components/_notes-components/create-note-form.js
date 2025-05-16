@@ -4,7 +4,7 @@ import Button from "./button";
 
 export default function CreateNoteForm() {
   return (
-    <form className="h-full py-5 px-6 w-full max-w-[562px] border-r-[1px] border-r-custom-neutral-200">
+    <form className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] border-r-[1px] border-r-custom-neutral-200">
       <input
         type="text"
         name="title"
@@ -53,16 +53,31 @@ export default function CreateNoteForm() {
 
       <hr className="mt-4 w-full h-[1px] border-custom-neutral-200" />
 
-      <textarea
-        className="mt-4 w-full h-full resize-none text-custom-neutral-700 inter font-normal text-sm focus:outline-none"
-        placeholder="Start typing your note here..."
-      ></textarea>
+      <div className="flex-grow flex overflow-hidden">
+        <textarea
+          className="mt-4 w-full resize-none text-custom-neutral-700 inter font-normal text-sm focus:outline-none"
+          placeholder="Start typing your note here..."
+        ></textarea>
+      </div>
 
       <hr className="mt-4 w-full h-[1px] border-custom-neutral-200 " />
 
       <div className="mt-4 flex justify-start gap-4">
-        <Button type="submit" btnText="Save Note" textColor="text-white" bgColor="bg-custom-blue-500" maxWidth="max-w-[99px]" />
-        <Button type="button" btnText="Cancel" textColor="text-custom-neutral-600" bgColor="bg-custom-neutral-100" maxWidth="max-w-[78px]" />
+        <Button
+          type="submit"
+          btnText="Save Note"
+          textColor="text-white"
+          bgColor="bg-custom-blue-500"
+          maxWidth="max-w-[99px]"
+        />
+        <Button
+          type="button"
+          btnText="Cancel"
+          textColor="text-custom-neutral-600"
+          bgColor="bg-custom-neutral-100"
+          maxWidth="max-w-[78px]"
+          toggle="close"
+        />
       </div>
     </form>
   );

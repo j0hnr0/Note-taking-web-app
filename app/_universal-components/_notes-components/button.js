@@ -3,13 +3,21 @@
 import { useToggle } from "@/app/contexts/toggle-provider";
 import clsx from "clsx";
 
-export default function Button({ type, btnText, textColor, bgColor, maxWidth, isLoading }) {
+export default function Button({
+  type,
+  btnText,
+  textColor,
+  bgColor,
+  maxWidth,
+  toggle,
+  isLoading,
+}) {
   const { toggleCreateNewNote } = useToggle();
 
   return (
     <button
       type={type}
-      onClick={toggleCreateNewNote}
+      onClick={type === "button" ? () => toggleCreateNewNote(toggle) : undefined}
       disabled={isLoading}
       className={clsx(
         `w-full ${maxWidth} py-3 text-center rounded-lg`,
