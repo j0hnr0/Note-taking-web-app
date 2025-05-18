@@ -27,6 +27,7 @@ model Note {
   id            String    @id @default(cuid())
   title         String
   content       String    @db.Text    // Using @db.Text for long content storage
+  tags          String[]  // Store tags as an array of strings
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   userId        String
