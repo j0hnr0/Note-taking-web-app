@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { AuthProvider } from "./contexts/auth-provider";
 import { Providers } from "./provider/providers";
+import { ReduxProvider } from "./provider/redux-provider";
 
 const inter = localFont({
   src: [
@@ -40,7 +41,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <Providers>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <ReduxProvider>{children}</ReduxProvider>
+          </AuthProvider>
         </Providers>
       </body>
     </html>

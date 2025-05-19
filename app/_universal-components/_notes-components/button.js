@@ -1,7 +1,8 @@
 "use client";
 
-import { useToggle } from "@/app/contexts/toggle-provider";
+import { openNoteEditor } from "@/app/all-notes/store/notes-slice";
 import clsx from "clsx";
+import { useDispatch } from "react-redux";
 
 export default function Button({
   type,
@@ -12,12 +13,12 @@ export default function Button({
   toggle,
   isLoading,
 }) {
-  const { toggleCreateNewNote } = useToggle();
+  const dispatch = useDispatch();
 
   return (
     <button
       type={type}
-      onClick={type === "button" ? () => toggleCreateNewNote(toggle) : undefined}
+      onClick={type === "button" ? () => dispatch(openNoteEditor(toggle)) : undefined}
       disabled={isLoading}
       className={clsx(
         `w-full ${maxWidth} py-3 text-center rounded-lg`,

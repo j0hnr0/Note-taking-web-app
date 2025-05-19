@@ -1,13 +1,26 @@
+"use client";
+
+import { useDispatch, useSelector } from "react-redux";
 import ClockSvg from "../_svg-components/clock-svg";
 import TagSvg from "../_svg-components/tag-svg";
 import Button from "./button";
+import { updateNoteTitle } from "@/app/all-notes/store/notes-slice";
 
 export default function CreateNoteForm() {
+  const dispatch = useDispatch()
+
+  function handleTitleChange(e) {
+    const newTitle = e.target.value;
+
+    dispatch(updateNoteTitle(newTitle === "" ? "Untitled Note" : newTitle));
+  }
+
   return (
     <form className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] border-r-[1px] border-r-custom-neutral-200">
       <input
         type="text"
         name="title"
+        onChange={handleTitleChange}
         className="w-full text-custom-neutral-950 inter font-bold text-2xl focus:outline-none"
         placeholder="Enter a title..."
       />
