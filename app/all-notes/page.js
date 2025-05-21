@@ -5,7 +5,6 @@ import MFooterMenu from "../_universal-components/_notes-components/mobile/m-foo
 import MHeader from "../_universal-components/_notes-components/mobile/m-header";
 import MNotesList from "../_universal-components/_notes-components/mobile/m-notes-list";
 import SideNav from "../_universal-components/_notes-components/side-nav";
-import { ToggleProvider } from "../contexts/toggle-provider";
 
 export default function AllNotes() {
   return (
@@ -27,9 +26,7 @@ export default function AllNotes() {
       max-custom-lg:hidden"
       >
         <Header />
-        <ToggleProvider>
-          <MainContent />
-        </ToggleProvider>
+        <MainContent />
       </div>
       {/* This will only display when screen size is > 1024px*/}
     </div>
