@@ -1,13 +1,36 @@
 "use client";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ClockSvg from "../_svg-components/clock-svg";
 import TagSvg from "../_svg-components/tag-svg";
 import Button from "./button";
 import { updateNoteTitle } from "@/app/all-notes/store/notes-slice";
 
 export default function CreateNoteForm() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const title = e.target.title.value.trim() ? e.target.title.value : "";
+    const content = e.target.content.value.trim() ? e.target.content.value : "";
+
+    const tags = e.target.tags.value
+      ? e.target.tags.value
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter((tag) => tag.length > 0)
+          .map(
+            (tag) => tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()
+          )
+      : [];
+
+    const formData = {
+      title: title,
+      tags: tags,
+      content: content,
+    };
+  }
 
   function handleTitleChange(e) {
     const newTitle = e.target.value;
@@ -68,6 +91,7 @@ export default function CreateNoteForm() {
 
       <div className="flex-grow flex overflow-hidden">
         <textarea
+          name="content"
           className="mt-4 w-full resize-none text-custom-neutral-700 inter font-normal text-sm focus:outline-none"
           placeholder="Start typing your note here..."
         ></textarea>
