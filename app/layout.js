@@ -3,6 +3,7 @@ import "./globals.css";
 import { AuthProvider } from "./contexts/auth-provider";
 import { Providers } from "./provider/providers";
 import { ReduxProvider } from "./provider/redux-provider";
+import TanstackProvider from "./provider/tanstack-provider";
 
 const inter = localFont({
   src: [
@@ -42,7 +43,9 @@ export default function RootLayout({ children }) {
       <body className={`${inter.variable} antialiased`}>
         <Providers>
           <AuthProvider>
-            <ReduxProvider>{children}</ReduxProvider>
+            <TanstackProvider>
+              <ReduxProvider>{children}</ReduxProvider>
+            </TanstackProvider>
           </AuthProvider>
         </Providers>
       </body>
