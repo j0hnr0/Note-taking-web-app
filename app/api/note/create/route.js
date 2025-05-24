@@ -3,15 +3,16 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { id, title, content, tags } = await request.json();
+    const { userId, title, content, tags } = await request.json();
 
-    const note = await createNote({ id, title, content, tags });
+    const note = await createNote({ userId, title, content, tags });
 
     return NextResponse.json(
       {
         message: "Note created successfully",
         note: {
           id: note.id,
+          userId: note.userId,
           title: note.title,
           content: note.content,
           tags: note.tags,

@@ -1,8 +1,8 @@
 import prisma from "./prisma";
 import { findUserById } from "./user-service";
 
-export async function createNote({ id, title, content, tags }) {
-  const user = await findUserById(id);
+export async function createNote({ userId, title, content, tags }) {
+  const user = await findUserById(userId);
 
   if (!user) {
     throw new Error("User not Found");
@@ -13,7 +13,7 @@ export async function createNote({ id, title, content, tags }) {
       title,
       content,
       tags: tags || [],
-      userId: id,
+      userId,
     },
   });
 

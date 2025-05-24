@@ -5,9 +5,36 @@ import ClockSvg from "../_svg-components/clock-svg";
 import TagSvg from "../_svg-components/tag-svg";
 import Button from "./button";
 import { updateNoteTitle } from "@/app/all-notes/store/notes-slice";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useAuth } from "@/app/contexts/auth-provider";
 
 export default function CreateNoteForm() {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+  const { user } = useAuth();
+
+  const mutation = useMutation({
+    mutationFn: async (formData) => {
+      const response = await fetch("/api/note/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to send data");
+      }
+
+      return data;
+    },
+    onSuccess: () => {
+      // This will trigger refetch in DisplayDataComponent
+      queryClient.invalidateQueries({ queryKey: ["noteData"] });
+      document.getElementById("create-note-form").reset();
+    },
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -26,10 +53,13 @@ export default function CreateNoteForm() {
       : [];
 
     const formData = {
+      userId: user.id,
       title: title,
       tags: tags,
       content: content,
     };
+
+    mutation.mutate(formData);
   }
 
   function handleTitleChange(e) {
@@ -39,7 +69,11 @@ export default function CreateNoteForm() {
   }
 
   return (
-    <form className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] border-r-[1px] border-r-custom-neutral-200">
+    <form
+      id="create-note-form"
+      onSubmit={handleSubmit}
+      className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] border-r-[1px] border-r-custom-neutral-200"
+    >
       <input
         type="text"
         name="title"
@@ -106,6 +140,7 @@ export default function CreateNoteForm() {
           textColor="text-white"
           bgColor="bg-custom-blue-500"
           maxWidth="max-w-[99px]"
+          isLoading={mutation.isPending}
         />
         <Button
           type="button"
@@ -114,6 +149,7 @@ export default function CreateNoteForm() {
           bgColor="bg-custom-neutral-100"
           maxWidth="max-w-[78px]"
           toggle="close"
+          isLoading={mutation.isPending}
         />
       </div>
     </form>
