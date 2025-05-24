@@ -19,3 +19,16 @@ export async function createNote({ userId, title, content, tags }) {
 
   return note;
 }
+
+export async function getUserNotes({ userId }) {
+  const notes = await prisma.note.findMany({
+    where: {
+      userId: userId,
+    },
+    orderBy: {
+      updatedAt: "desc",
+    },
+  });
+
+  return notes;
+}

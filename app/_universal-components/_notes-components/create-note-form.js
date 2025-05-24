@@ -4,7 +4,10 @@ import { useDispatch } from "react-redux";
 import ClockSvg from "../_svg-components/clock-svg";
 import TagSvg from "../_svg-components/tag-svg";
 import Button from "./button";
-import { updateNoteTitle } from "@/app/all-notes/store/notes-slice";
+import {
+  openNoteEditor,
+  updateNoteTitle,
+} from "@/app/all-notes/store/notes-slice";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/app/contexts/auth-provider";
 
@@ -32,7 +35,7 @@ export default function CreateNoteForm() {
     onSuccess: () => {
       // This will trigger refetch in DisplayDataComponent
       queryClient.invalidateQueries({ queryKey: ["noteData"] });
-      document.getElementById("create-note-form").reset();
+      dispatch(openNoteEditor("close"));
     },
   });
 
