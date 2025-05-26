@@ -31,7 +31,7 @@ export default function NotesList() {
   });
 
   if (isPending) {
-    return <h1>Loading...</h1>
+    return <h1>Loading...</h1>;
   }
 
   return (
@@ -47,9 +47,19 @@ export default function NotesList() {
 
       {isOpen && <UntitledNote />}
 
-      {notes ? notes.map((note) => (
-        <NoteCard key={note.id} title={note.title} tags={note.tags} date={note.updatedAt} />
-      )) : <EmptyMessage message="You don’t have any notes yet. Start a new note to capture your thoughts and ideas." />}
+      {notes.length > 0 &&
+        notes.map((note) => (
+          <NoteCard
+            key={note.id}
+            title={note.title}
+            tags={note.tags}
+            date={note.updatedAt}
+          />
+        ))}
+
+      {notes.length === 0 && !isOpen && (
+        <EmptyMessage message="You don't have any notes yet. Start a new note to capture your thoughts and ideas." />
+      )}
     </div>
   );
 }
