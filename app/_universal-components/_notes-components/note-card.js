@@ -1,12 +1,29 @@
-export default function NoteCard({ title, tags, date }) {
+"use client";
+
+import clsx from "clsx";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+export default function NoteCard({ id, title, tags, date }) {
   const formattedDate = new Date(date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
     year: "numeric",
   });
 
+  const pathname = usePathname();
+
   return (
-    <div className="w-full p-2 rounded-md border-b-[1px] border-b-custom-neutral-200">
+    <Link
+      href={`/all-notes/${id}`}
+      className={clsx(
+        "mt-1 w-full p-2 rounded-md border-b-[1px] border-b-custom-neutral-200 hover:bg-custom-neutral-100 block hover:border-b-custom-neutral-100",
+        {
+          "bg-custom-neutral-100 border-b-custom-neutral-100":
+            pathname === `/all-notes/${id}`,
+        }
+      )}
+    >
       <h5 className="inter font-semibold text-base text-custom-neutral-950">
         {title}
       </h5>
@@ -28,6 +45,6 @@ export default function NoteCard({ title, tags, date }) {
       <span className="mt-3 inter font-normal text-xs text-custom-neutral-700">
         {formattedDate}
       </span>
-    </div>
+    </Link>
   );
 }

@@ -40,7 +40,7 @@ export default function NotesList() {
         bgColor="bg-custom-blue-500"
         toggle="open"
       />
-      <div className="mb-4"></div>
+      <div className="mb-3"></div>
 
       {isOpen && <UntitledNote />}
 
@@ -50,11 +50,18 @@ export default function NotesList() {
         </div>
       )}
 
+      {error && (
+        <div className="inter font-normal p-6 text-red-500">
+          Error loading notes: {error.message}
+        </div>
+      )}
+
       {notes &&
         notes.length > 0 &&
         notes.map((note) => (
           <NoteCard
             key={note.id}
+            id={note.id}
             title={note.title}
             tags={note.tags}
             date={note.updatedAt}

@@ -15,7 +15,7 @@ export default function SideNav() {
           <NavMenu svg={HomeSvg} href="/all-notes">
             All Notes
           </NavMenu>
-          <NavMenu svg={ArchiveSvg} href="/">
+          <NavMenu svg={ArchiveSvg} href="/to-be-made">
             Archived Notes
           </NavMenu>
         </ul>
