@@ -6,7 +6,7 @@ export default function NoteCard({ title, tags, date }) {
   });
 
   return (
-    <div className="w-full p-2 rounded-md bg-custom-neutral-100">
+    <div className="w-full p-2 rounded-md border-b-[1px] border-b-custom-neutral-200">
       <h5 className="inter font-semibold text-base text-custom-neutral-950">
         {title}
       </h5>

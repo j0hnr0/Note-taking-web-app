@@ -7,6 +7,7 @@ import UntitledNote from "./untitled-note";
 import { useAuth } from "@/app/contexts/auth-provider";
 import { useQuery } from "@tanstack/react-query";
 import NoteCard from "./note-card";
+import { LoadingSpinner } from "../_auth-components/auth-spinner";
 
 export default function NotesList() {
   const isOpen = useSelector((state) => state.notes.isNoteEditorOpen);
@@ -30,10 +31,6 @@ export default function NotesList() {
     },
   });
 
-  if (isPending) {
-    return <h1>Loading...</h1>;
-  }
-
   return (
     <div className="w-full max-w-[290px] py-5 px-8 border-r-[1px] border-r-custom-neutral-200 h-full">
       <Button
@@ -47,7 +44,14 @@ export default function NotesList() {
 
       {isOpen && <UntitledNote />}
 
-      {notes.length > 0 &&
+      {isPending && (
+        <div className="mt-12">
+          <LoadingSpinner size="md" color="primary" />
+        </div>
+      )}
+
+      {notes &&
+        notes.length > 0 &&
         notes.map((note) => (
           <NoteCard
             key={note.id}
@@ -57,7 +61,7 @@ export default function NotesList() {
           />
         ))}
 
-      {notes.length === 0 && !isOpen && (
+      {notes && notes.length === 0 && !isOpen && (
         <EmptyMessage message="You don't have any notes yet. Start a new note to capture your thoughts and ideas." />
       )}
     </div>
