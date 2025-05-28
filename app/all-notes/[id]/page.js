@@ -31,7 +31,7 @@ export default function NotePage({ params }) {
         <Header />
         <div className="flex justify-start items-start h-full">
           <NotesList />
-          <UpdateNoteForm />
+          <UpdateNoteForm id={id} />
         </div>
       </div>
       {/* This will only display when screen size is > 1024px*/}

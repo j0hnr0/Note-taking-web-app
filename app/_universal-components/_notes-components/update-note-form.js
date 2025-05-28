@@ -3,65 +3,47 @@
 import ClockSvg from "../_svg-components/clock-svg";
 import TagSvg from "../_svg-components/tag-svg";
 import Button from "./button";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuth } from "@/app/contexts/auth-provider";
+import { useQuery } from "@tanstack/react-query";
+import { LoadingSpinner } from "../_auth-components/auth-spinner";
 
-export default function UpdateNoteForm() {
-  const queryClient = useQueryClient();
-  const { user } = useAuth();
-
-  const mutation = useMutation({
-    mutationFn: async (formData) => {
-      const response = await fetch("/api/note/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
+export default function UpdateNoteForm({ id }) {
+  const {
+    data: note,
+    isPending,
+    error,
+  } = useQuery({
+    queryKey: ["note", id],
+    queryFn: async () => {
+      const response = await fetch(`/api/note/fetch-one-note?id=${id}`);
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Failed to send data");
+        throw new Error(data.message || "Failed to fetch the note");
       }
 
       return data;
     },
-    onSuccess: () => {
-      // This will trigger refetch in DisplayDataComponent
-      queryClient.invalidateQueries({ queryKey: ["noteData"] });
-    },
   });
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  if (isPending) {
+    return (
+      <div className="mt-12">
+        <LoadingSpinner size="md" color="primary" />
+      </div>
+    );
+  }
 
-    const title = e.target.title.value.trim() ? e.target.title.value : "";
-    const content = e.target.content.value.trim() ? e.target.content.value : "";
-
-    const tags = e.target.tags.value
-      ? e.target.tags.value
-          .split(",")
-          .map((tag) => tag.trim())
-          .filter((tag) => tag.length > 0)
-          .map(
-            (tag) => tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()
-          )
-      : [];
-
-    const formData = {
-      userId: user.id,
-      title: title,
-      tags: tags,
-      content: content,
-    };
-
-    mutation.mutate(formData);
+  if (error) {
+    return (
+      <div className="inter font-normal p-6 text-red-500">
+        Error loading note: {error.message}
+      </div>
+    );
   }
 
   return (
     <form
       id="create-note-form"
-      onSubmit={handleSubmit}
       className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] border-r-[1px] border-r-custom-neutral-200"
     >
       <input
@@ -69,6 +51,7 @@ export default function UpdateNoteForm() {
         name="title"
         className="w-full text-custom-neutral-950 inter font-bold text-2xl focus:outline-none"
         placeholder="Enter a title..."
+        defaultValue={note.title || "Untitled Note"}
       />
 
       <div className="mt-4 flex justify-start items-center gap-2">
@@ -87,6 +70,7 @@ export default function UpdateNoteForm() {
           name="tags"
           className="w-full text-custom-neutral-950 inter font-normal text-sm rounded-sm"
           placeholder="Add tags separated by commas (e.g. Work, Planning)"
+          defaultValue={note.tags?.join(", ") || ""}
         />
       </div>
 
@@ -106,6 +90,11 @@ export default function UpdateNoteForm() {
           name="last-edited"
           className="w-full text-custom-neutral-950 inter font-normal text-sm rounded-sm"
           placeholder="Not yet saved"
+          defaultValue={new Date(note.updatedAt).toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })}
           disabled
         />
       </div>
@@ -117,6 +106,7 @@ export default function UpdateNoteForm() {
           name="content"
           className="mt-4 w-full resize-none text-custom-neutral-700 inter font-normal text-sm focus:outline-none"
           placeholder="Start typing your note here..."
+          defaultValue={note.content || ""}
         ></textarea>
       </div>
 
@@ -129,7 +119,7 @@ export default function UpdateNoteForm() {
           textColor="text-white"
           bgColor="bg-custom-blue-500"
           maxWidth="max-w-[99px]"
-          isLoading={mutation.isPending}
+          //   isLoading={mutation.isPending}
         />
         <Button
           type="button"
@@ -138,7 +128,7 @@ export default function UpdateNoteForm() {
           bgColor="bg-custom-neutral-100"
           maxWidth="max-w-[78px]"
           toggle="close"
-          isLoading={mutation.isPending}
+          //   isLoading={mutation.isPending}
         />
       </div>
     </form>
