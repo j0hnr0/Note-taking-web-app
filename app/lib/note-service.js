@@ -32,3 +32,13 @@ export async function getUserNotes({ userId }) {
 
   return notes;
 }
+
+export async function getUserNotesById({ id }) {
+  const note = await prisma.note.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  return note;
+}

@@ -1,10 +1,11 @@
 import Header from "@/app/_universal-components/_notes-components/header";
-import MainContent from "@/app/_universal-components/_notes-components/main-content";
 import MFloatingPlus from "@/app/_universal-components/_notes-components/mobile/m-floating-plus";
 import MFooterMenu from "@/app/_universal-components/_notes-components/mobile/m-footer-menu";
 import MHeader from "@/app/_universal-components/_notes-components/mobile/m-header";
 import MNotesList from "@/app/_universal-components/_notes-components/mobile/m-notes-list";
+import NotesList from "@/app/_universal-components/_notes-components/notes-list";
 import SideNav from "@/app/_universal-components/_notes-components/side-nav";
+import UpdateNoteForm from "@/app/_universal-components/_notes-components/update-note-form";
 
 export default function NotePage({ params }) {
   const { id } = params;
@@ -28,7 +29,10 @@ export default function NotePage({ params }) {
           max-custom-lg:hidden"
       >
         <Header />
-        <MainContent />
+        <div className="flex justify-start items-start h-full">
+          <NotesList />
+          <UpdateNoteForm />
+        </div>
       </div>
       {/* This will only display when screen size is > 1024px*/}
     </div>
