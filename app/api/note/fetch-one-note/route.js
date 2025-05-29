@@ -1,4 +1,4 @@
-import { getUserNotesById } from "@/app/lib/note-service";
+import { getUserNoteById } from "@/app/lib/note-service";
 import { NextResponse } from "next/server";
 
 export async function GET(request) {
@@ -10,7 +10,7 @@ export async function GET(request) {
       return NextResponse.json({ message: "Note not found" }, { status: 400 });
     }
 
-    const note = await getUserNotesById({ id });
+    const note = await getUserNoteById({ id });
 
     return NextResponse.json(note, { status: 200 });
   } catch (error) {

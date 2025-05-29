@@ -27,7 +27,7 @@ export default function UpdateNoteForm({ id }) {
 
   if (isPending) {
     return (
-      <div className="mt-12">
+      <div className="m-12">
         <LoadingSpinner size="md" color="primary" />
       </div>
     );

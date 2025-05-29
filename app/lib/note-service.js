@@ -33,7 +33,7 @@ export async function getUserNotes({ userId }) {
   return notes;
 }
 
-export async function getUserNotesById({ id }) {
+export async function getUserNoteById({ id }) {
   const note = await prisma.note.findUnique({
     where: {
       id: id,
@@ -41,4 +41,49 @@ export async function getUserNotesById({ id }) {
   });
 
   return note;
+}
+
+export async function updateUserNoteById({ id, data }) {
+  // First, get current note
+  const currentNote = await prisma.note.findUnique({ where: { id } });
+
+  if (!currentNote) {
+    throw new Error("Note not found");
+  }
+
+  const updateData = {};
+
+  // Only add fields that are different from current values
+  if (data.title !== undefined && data.title !== currentNote.title) {
+    updateData.title = data.title;
+  }
+
+  if (data.content !== undefined && data.content !== currentNote.content) {
+    updateData.content = data.content;
+  }
+
+  if (data.tags !== undefined) {
+    const newTags = data.tags
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter((tag) => tag.length > 0);
+
+    // Compare arrays
+    const tagsChanged =
+      JSON.stringify(newTags) !== JSON.stringify(currentNote.tags || []);
+
+    if (tagsChanged) {
+      updateData.tags = newTags;
+    }
+  }
+
+  // Only update if something actually changed
+  if (Object.keys(updateData).length === 0) {
+    return currentNote; // Return without updating
+  }
+
+  return await prisma.note.update({
+    where: { id },
+    data: updateData,
+  });
 }
