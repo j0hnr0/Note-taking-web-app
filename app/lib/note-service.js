@@ -66,7 +66,8 @@ export async function updateUserNoteById({ id, data }) {
     const newTags = data.tags
       .split(",")
       .map((tag) => tag.trim())
-      .filter((tag) => tag.length > 0);
+      .filter((tag) => tag.length > 0)
+      .map((tag) => tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase());
 
     // Compare arrays
     const tagsChanged =
