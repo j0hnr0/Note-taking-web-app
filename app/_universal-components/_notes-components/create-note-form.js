@@ -42,7 +42,7 @@ export default function CreateNoteForm() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const title = e.target.title.value.trim() ? e.target.title.value : "";
+    const title = e.target.title.value.trim() ? e.target.title.value : "Untitled Note";
     const content = e.target.content.value.trim() ? e.target.content.value : "";
 
     const tags = e.target.tags.value

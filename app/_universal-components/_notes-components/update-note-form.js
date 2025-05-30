@@ -3,10 +3,15 @@
 import ClockSvg from "../_svg-components/clock-svg";
 import TagSvg from "../_svg-components/tag-svg";
 import Button from "./button";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { LoadingSpinner } from "../_auth-components/auth-spinner";
+import { useDispatch } from "react-redux";
+import { openNoteEditor } from "@/app/all-notes/store/notes-slice";
 
 export default function UpdateNoteForm({ id }) {
+  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+
   const {
     data: note,
     isPending,
@@ -24,6 +29,45 @@ export default function UpdateNoteForm({ id }) {
       return data;
     },
   });
+
+  const mutation = useMutation({
+    mutationFn: async (formData) => {
+      const response = await fetch(`/api/note/update?id=${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to update note");
+      }
+
+      return data;
+    },
+    onSuccess: () => {
+      // This will trigger refetch in DisplayDataComponent
+      queryClient.invalidateQueries({ queryKey: ["noteData"] });
+      dispatch(openNoteEditor("close"));
+    },
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const title = e.target.title.value.trim()
+      ? e.target.title.value
+      : "Untitled Note";
+    const content = e.target.content.value.trim() ? e.target.content.value : "";
+
+    const formData = {
+      title: title,
+      tags: e.target.tags.value,
+      content: content,
+    };
+
+    mutation.mutate(formData);
+  }
 
   if (isPending) {
     return (
@@ -44,6 +88,7 @@ export default function UpdateNoteForm({ id }) {
   return (
     <form
       id="create-note-form"
+      onSubmit={handleSubmit}
       className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] border-r-[1px] border-r-custom-neutral-200"
     >
       <input
@@ -119,7 +164,7 @@ export default function UpdateNoteForm({ id }) {
           textColor="text-white"
           bgColor="bg-custom-blue-500"
           maxWidth="max-w-[99px]"
-          //   isLoading={mutation.isPending}
+          isLoading={mutation.isPending}
         />
         <Button
           type="button"
@@ -128,7 +173,7 @@ export default function UpdateNoteForm({ id }) {
           bgColor="bg-custom-neutral-100"
           maxWidth="max-w-[78px]"
           toggle="close"
-          //   isLoading={mutation.isPending}
+          isLoading={mutation.isPending}
         />
       </div>
     </form>
