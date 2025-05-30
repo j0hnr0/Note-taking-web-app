@@ -7,6 +7,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { LoadingSpinner } from "../_auth-components/auth-spinner";
 import { useDispatch } from "react-redux";
 import { openNoteEditor } from "@/app/all-notes/store/notes-slice";
+import Link from "next/link";
+import clsx from "clsx";
 
 export default function UpdateNoteForm({ id }) {
   const dispatch = useDispatch();
@@ -166,15 +168,23 @@ export default function UpdateNoteForm({ id }) {
           maxWidth="max-w-[99px]"
           isLoading={mutation.isPending}
         />
-        <Button
-          type="button"
-          btnText="Cancel"
-          textColor="text-custom-neutral-600"
-          bgColor="bg-custom-neutral-100"
-          maxWidth="max-w-[78px]"
-          toggle="close"
-          isLoading={mutation.isPending}
-        />
+        <Link
+          href="/all-notes"
+          className={clsx(
+            `w-full max-w-[78px] py-3 text-center rounded-lg`,
+            mutation.isPending
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-custom-neutral-100 cursor-pointer"
+          )}
+        >
+          <h5 className="inter font-medium text-sm text-custom-neutral-600">
+            {mutation.isPending ? (
+              <span className="mr-2 inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+            ) : (
+              "Cancel"
+            )}
+          </h5>
+        </Link>
       </div>
     </form>
   );

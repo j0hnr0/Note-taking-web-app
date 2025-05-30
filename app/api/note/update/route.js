@@ -1,4 +1,5 @@
 import { updateUserNoteById } from "@/app/lib/note-service";
+import { NextResponse } from "next/server";
 
 export async function PATCH(request) {
   try {
@@ -14,7 +15,7 @@ export async function PATCH(request) {
 
     return NextResponse.json(note, { status: 200 });
   } catch (error) {
-    
+
     if (error.message === "Note not found") {
       return NextResponse.json(
         { message: "Note cannot be found." },
