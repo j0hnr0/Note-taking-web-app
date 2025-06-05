@@ -2,6 +2,7 @@
 
 import { openNoteEditor } from "@/app/all-notes/store/notes-slice";
 import clsx from "clsx";
+import { usePathname, useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 
 export default function Button({
@@ -14,11 +15,26 @@ export default function Button({
   isLoading,
 }) {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  function navigateToAllNotes() {
+    if (btnText === "+ Create New Note" && pathname !== "/all-notes") {
+      router.push("/all-notes");
+    }
+  }
 
   return (
     <button
       type={type}
-      onClick={type === "button" ? () => dispatch(openNoteEditor(toggle)) : undefined}
+      onClick={
+        type === "button"
+          ? () => {
+              navigateToAllNotes();
+              dispatch(openNoteEditor(toggle));
+            }
+          : undefined
+      }
       disabled={isLoading}
       className={clsx(
         `w-full ${maxWidth} py-3 text-center rounded-lg`,

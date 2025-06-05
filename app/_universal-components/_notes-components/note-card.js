@@ -1,8 +1,10 @@
 "use client";
 
+import { openNoteEditor } from "@/app/all-notes/store/notes-slice";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 export default function NoteCard({ id, title, tags, date }) {
   const formattedDate = new Date(date).toLocaleDateString("en-GB", {
@@ -12,10 +14,16 @@ export default function NoteCard({ id, title, tags, date }) {
   });
 
   const pathname = usePathname();
+  const dispatch = useDispatch();
+
+  function handleClick() {
+    dispatch(openNoteEditor("close"));
+  }
 
   return (
     <Link
       href={`/all-notes/${id}`}
+      onClick={handleClick}
       className={clsx(
         "mt-1 w-full p-2 rounded-md border-b-[1px] border-b-custom-neutral-200 hover:bg-custom-neutral-100 block hover:border-b-custom-neutral-100",
         {
