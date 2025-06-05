@@ -5,13 +5,10 @@ import TagSvg from "../_svg-components/tag-svg";
 import Button from "./button";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { LoadingSpinner } from "../_auth-components/auth-spinner";
-import { useDispatch } from "react-redux";
-import { openNoteEditor } from "@/app/all-notes/store/notes-slice";
 import Link from "next/link";
 import clsx from "clsx";
 
 export default function UpdateNoteForm({ id }) {
-  const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
   const {
@@ -50,7 +47,7 @@ export default function UpdateNoteForm({ id }) {
     onSuccess: () => {
       // This will trigger refetch in DisplayDataComponent
       queryClient.invalidateQueries({ queryKey: ["noteData"] });
-      dispatch(openNoteEditor("close"));
+      queryClient.invalidateQueries({ queryKey: ["note", id] });
     },
   });
 
