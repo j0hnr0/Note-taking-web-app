@@ -88,3 +88,18 @@ export async function updateUserNoteById({ id, data }) {
     data: updateData,
   });
 }
+
+export async function deleteUserNoteById({ id, userId }) {
+  const result = await prisma.note.deleteMany({
+    where: {
+      id,
+      userId,
+    },
+  });
+
+  if (result.count === 0) {
+    throw new Error("Note not found or unauthorized");
+  }
+
+  return { success: true, id };
+}

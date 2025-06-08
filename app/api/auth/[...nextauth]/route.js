@@ -1,11 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import prisma from "@/app/lib/prisma";
 import { validateCredentials } from "@/app/lib/user-service";
-import { PrismaAdapter } from "@auth/prisma-adapter";
 
 export const authOptions = {
-  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       name: "Credentials",
