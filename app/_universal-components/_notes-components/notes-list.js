@@ -4,14 +4,12 @@ import { useSelector } from "react-redux";
 import Button from "./button";
 import EmptyMessage from "./empty-message";
 import UntitledNote from "./untitled-note";
-import { useAuth } from "@/app/contexts/auth-provider";
 import { useQuery } from "@tanstack/react-query";
 import NoteCard from "./note-card";
 import { LoadingSpinner } from "../_auth-components/auth-spinner";
 
 export default function NotesList() {
   const isOpen = useSelector((state) => state.notes.isNoteEditorOpen);
-  const { user } = useAuth();
 
   const {
     data: notes,
@@ -20,7 +18,7 @@ export default function NotesList() {
   } = useQuery({
     queryKey: ["noteData"],
     queryFn: async () => {
-      const response = await fetch(`/api/note/fetch?userId=${user.id}`);
+      const response = await fetch(`/api/note/fetch`);
       const data = await response.json();
 
       if (!response.ok) {

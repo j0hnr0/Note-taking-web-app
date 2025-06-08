@@ -1,9 +1,19 @@
 import { createNote } from "@/app/lib/note-service";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { authOptions } from "../../auth/[...nextauth]/route";
 
 export async function POST(request) {
   try {
-    const { userId, title, content, tags } = await request.json();
+    const { title, content, tags } = await request.json();
+
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
+    const userId = session.user.id;
 
     const note = await createNote({ userId, title, content, tags });
 

@@ -9,12 +9,10 @@ import {
   updateNoteTitle,
 } from "@/app/all-notes/store/notes-slice";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuth } from "@/app/contexts/auth-provider";
 
 export default function CreateNoteForm() {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  const { user } = useAuth();
 
   const mutation = useMutation({
     mutationFn: async (formData) => {
@@ -56,7 +54,6 @@ export default function CreateNoteForm() {
       : [];
 
     const formData = {
-      userId: user.id,
       title: title,
       tags: tags,
       content: content,
