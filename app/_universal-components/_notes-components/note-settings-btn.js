@@ -28,6 +28,25 @@ export default function NoteSettingsBtn({ id, svg: Svg, text }) {
     },
   });
 
+  const archiveMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch(`api/note/archive-note?id=${id}`, {
+        method: "PATCH",
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to move note to archive");
+      }
+
+      return data
+    },
+    onSuccess: () => {
+      // TODO: CONTINUE INVALIDATING QUERIES HERE!!!
+    }
+  });
+
   function handleClick() {
     deleteMutation.mutate(id);
   }

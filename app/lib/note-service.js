@@ -104,3 +104,20 @@ export async function deleteUserNoteById({ id, userId }) {
 
   return { success: true, id };
 }
+
+export async function moveNoteToArchive({ id }) {
+  const currentNote = await prisma.note.findUnique({ where: { id } });
+
+  if (!currentNote) {
+    throw new Error("Note not found");
+  }
+
+  const archivedNote = await prisma.note.update({
+    where: { id },
+    data: {
+      isArchive: true,
+    },
+  });
+
+  return archivedNote;
+}
