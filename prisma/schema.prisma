@@ -28,6 +28,7 @@ model Note {
   title         String
   content       String    @db.Text    // Using @db.Text for long content storage
   tags          String[]  // Store tags as an array of strings
+  isArchive     Boolean   @default(false) // Default value
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   userId        String
