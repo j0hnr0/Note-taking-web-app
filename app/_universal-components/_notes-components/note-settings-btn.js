@@ -29,8 +29,8 @@ export default function NoteSettingsBtn({ id, svg: Svg, text }) {
   });
 
   const archiveMutation = useMutation({
-    mutationFn: async () => {
-      const response = await fetch(`api/note/archive-note?id=${id}`, {
+    mutationFn: async (noteId) => {
+      const response = await fetch(`/api/note/archive-note?id=${noteId}`, {
         method: "PATCH",
       });
 
@@ -40,28 +40,39 @@ export default function NoteSettingsBtn({ id, svg: Svg, text }) {
         throw new Error(data.message || "Failed to move note to archive");
       }
 
-      return data
+      return data;
     },
     onSuccess: () => {
-      // TODO: CONTINUE INVALIDATING QUERIES HERE!!!
-    }
+      queryClient.invalidateQueries({ queryKey: ["noteData"] });
+      router.push("/all-notes");
+
+      // NOTE: NEXT TASK IS THE SIDE NAV ARCHIVED NOTES PAGE
+    },
   });
 
-  function handleClick() {
+  function handleDeleteClick() {
     deleteMutation.mutate(id);
+  }
+
+  function handleArchiveClick() {
+    archiveMutation.mutate(id);
   }
 
   return (
     <button
       type="button"
-      onClick={text === "Delete Note" ? handleClick : undefined}
+      onClick={text === "Delete Note" ? handleDeleteClick : handleArchiveClick}
       className="cursor-pointer w-full rounded-lg py-3 px-4 flex justify-start items-center gap-2 border-[1px] border-custom-neutral-300
       hover:bg-custom-neutral-100"
-      disabled={deleteMutation.isPending}
+      disabled={deleteMutation.isPending || archiveMutation.isPending}
     >
       <Svg fill="#2B303B" />
       <span className="block inter font-medium text-sm text-custom-neutral-950">
-        {deleteMutation.isPending ? "Deleting..." : text}
+        {deleteMutation.isPending
+          ? "Deleting..."
+          : archiveMutation.isPending
+          ? "Archiving..."
+          : text}
       </span>
     </button>
   );

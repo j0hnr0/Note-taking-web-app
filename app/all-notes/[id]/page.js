@@ -8,8 +8,8 @@ import NotesList from "@/app/_universal-components/_notes-components/notes-list"
 import SideNav from "@/app/_universal-components/_notes-components/side-nav";
 import UpdateNoteForm from "@/app/_universal-components/_notes-components/update-note-form";
 
-export default function NotePage({ params }) {
-  const { id } = params;
+export default async function NotePage({ params }) {
+  const { id } = await params;
 
   return (
     <div
