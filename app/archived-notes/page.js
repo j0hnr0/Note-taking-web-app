@@ -6,11 +6,11 @@ import MHeader from "../_universal-components/_notes-components/mobile/m-header"
 import MNotesList from "../_universal-components/_notes-components/mobile/m-notes-list";
 import SideNav from "../_universal-components/_notes-components/side-nav";
 
-export default function AllNotes() {
+export default function ArchivedNotes() {
   return (
     <div
       className="flex items-start h-screen
-    max-custom-lg:block max-custom-lg:h-auto"
+        max-custom-lg:block max-custom-lg:h-auto"
     >
       {/* This will only display when screen size is < 1024px */}
       <MHeader />
@@ -23,10 +23,10 @@ export default function AllNotes() {
       <SideNav />
       <div
         className="w-full h-full flex flex-col
-      max-custom-lg:hidden"
+          max-custom-lg:hidden"
       >
-        <Header title="All Notes" />
-        <MainContent />
+        <Header title="Archived Notes" />
+        <MainContent isInArchivedNotes={true} />
       </div>
       {/* This will only display when screen size is > 1024px*/}
     </div>

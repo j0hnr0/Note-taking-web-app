@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import NoteCard from "./note-card";
 import { LoadingSpinner } from "../_auth-components/auth-spinner";
 
-export default function NotesList() {
+export default function NotesList({ isInArchivedNotes }) {
   const isOpen = useSelector((state) => state.notes.isNoteEditorOpen);
 
   const {
@@ -40,6 +40,13 @@ export default function NotesList() {
       />
       <div className="mb-3"></div>
 
+      {isInArchivedNotes && (
+        <p className="mt-4 inter font-normal text-sm text-custom-neutral-700">
+          All your archived notes are stored here. You can restore or delete
+          them anytime.
+        </p>
+      )}
+
       {isOpen && <UntitledNote />}
 
       {isPending && (
@@ -67,7 +74,13 @@ export default function NotesList() {
         ))}
 
       {notes && notes.length === 0 && !isOpen && (
-        <EmptyMessage message="You don't have any notes yet. Start a new note to capture your thoughts and ideas." />
+        <EmptyMessage
+          message={
+            isInArchivedNotes
+              ? "No notes have been archived yet. Move notes here for safekeeping, or create a new note."
+              : "You don't have any notes yet. Start a new note to capture your thoughts and ideas."
+          }
+        />
       )}
     </div>
   );

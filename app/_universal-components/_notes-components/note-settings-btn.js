@@ -45,8 +45,6 @@ export default function NoteSettingsBtn({ id, svg: Svg, text }) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["noteData"] });
       router.push("/all-notes");
-
-      // NOTE: NEXT TASK IS THE SIDE NAV ARCHIVED NOTES PAGE
     },
   });
 
