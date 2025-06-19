@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDispatch } from "react-redux";
 
-export default function NoteCard({ id, title, tags, date }) {
+export default function NoteCard({ id, title, tags, date, isInArchivedNotes }) {
   const formattedDate = new Date(date).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
@@ -22,7 +22,7 @@ export default function NoteCard({ id, title, tags, date }) {
 
   return (
     <Link
-      href={`/all-notes/${id}`}
+      href={isInArchivedNotes ? `/archived-notes/${id}` : `/all-notes/${id}`}
       onClick={handleClick}
       className={clsx(
         "mt-1 w-full p-2 rounded-md border-b-[1px] border-b-custom-neutral-200 hover:bg-custom-neutral-100 block hover:border-b-custom-neutral-100",

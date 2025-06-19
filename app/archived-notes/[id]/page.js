@@ -29,9 +29,9 @@ export default async function ArchivePage({ params }) {
         className="w-full h-full flex flex-col
             max-custom-lg:hidden"
       >
-        <Header title="All Notes" />
+        <Header title="Archived Notes" />
         <div className="flex justify-start items-start h-full">
-          <NotesList />
+          <NotesList isInArchivedNotes={true} />
           <UpdateNoteForm id={id} />
           <NoteSettings id={id} />
         </div>

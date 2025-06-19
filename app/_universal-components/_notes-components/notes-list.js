@@ -72,6 +72,7 @@ export default function NotesList({ isInArchivedNotes }) {
             title={note.title}
             tags={note.tags}
             date={note.updatedAt}
+            isInArchivedNotes={isInArchivedNotes}
           />
         ))}
 
