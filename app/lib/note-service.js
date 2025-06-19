@@ -121,3 +121,17 @@ export async function moveNoteToArchive({ id }) {
 
   return archivedNote;
 }
+
+export async function getUserArchivedNotes({ userId }) {
+  const notes = await prisma.note.findMany({
+    where: {
+      userId: userId,
+      isArchive: true,
+    },
+    orderBy: {
+      updatedAt: "desc",
+    },
+  });
+
+  return notes;
+}

@@ -18,7 +18,9 @@ export default function NotesList({ isInArchivedNotes }) {
   } = useQuery({
     queryKey: ["noteData"],
     queryFn: async () => {
-      const response = await fetch(`/api/note/fetch`);
+      const response = await fetch(
+        isInArchivedNotes ? `/api/note/get-archive-notes` : `/api/note/fetch`
+      );
       const data = await response.json();
 
       if (!response.ok) {
