@@ -8,7 +8,7 @@ import { LoadingSpinner } from "../_auth-components/auth-spinner";
 import Link from "next/link";
 import clsx from "clsx";
 
-export default function UpdateNoteForm({ id }) {
+export default function UpdateNoteForm({ id, isInArchivedNotes }) {
   const queryClient = useQueryClient();
 
   const {
@@ -166,7 +166,7 @@ export default function UpdateNoteForm({ id }) {
           isLoading={mutation.isPending}
         />
         <Link
-          href="/all-notes"
+          href={isInArchivedNotes ? "/archived-notes" : "/all-notes"}
           className={clsx(
             `w-full max-w-[78px] py-3 text-center rounded-lg`,
             mutation.isPending

@@ -32,8 +32,8 @@ export default async function ArchivePage({ params }) {
         <Header title="Archived Notes" />
         <div className="flex justify-start items-start h-full">
           <NotesList isInArchivedNotes={true} />
-          <UpdateNoteForm id={id} />
-          <NoteSettings id={id} />
+          <UpdateNoteForm id={id} isInArchivedNotes={true} />
+          <NoteSettings id={id} isInArchivedNotes={true} />
         </div>
       </div>
       {/* This will only display when screen size is > 1024px*/}

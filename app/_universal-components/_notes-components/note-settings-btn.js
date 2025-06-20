@@ -3,7 +3,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-export default function NoteSettingsBtn({ id, svg: Svg, text }) {
+export default function NoteSettingsBtn({ id, svg: Svg, text, isInArchivedNotes }) {
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -47,6 +47,11 @@ export default function NoteSettingsBtn({ id, svg: Svg, text }) {
       router.push("/all-notes");
     },
   });
+
+  // Continue here:
+  // const restoreMutation = useMutation({
+    
+  // })
 
   function handleDeleteClick() {
     deleteMutation.mutate(id);

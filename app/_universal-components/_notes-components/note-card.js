@@ -28,7 +28,7 @@ export default function NoteCard({ id, title, tags, date, isInArchivedNotes }) {
         "mt-1 w-full p-2 rounded-md border-b-[1px] border-b-custom-neutral-200 hover:bg-custom-neutral-100 block hover:border-b-custom-neutral-100",
         {
           "bg-custom-neutral-100 border-b-custom-neutral-100":
-            pathname === `/all-notes/${id}`,
+            isInArchivedNotes ? pathname === `/archived-notes/${id}` : pathname === `/all-notes/${id}`,
         }
       )}
     >

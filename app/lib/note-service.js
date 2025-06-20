@@ -135,3 +135,20 @@ export async function getUserArchivedNotes({ userId }) {
 
   return notes;
 }
+
+export async function restoreNote({ id }) {
+  const currentNote = await prisma.note.findUnique({ where: { id } });
+
+  if (!currentNote) {
+    throw new Error("Note not found");
+  }
+
+  const restoredNote = await prisma.note.update({
+    where: { id },
+    data: {
+      isArchive: false,
+    },
+  });
+
+  return restoredNote;
+}
