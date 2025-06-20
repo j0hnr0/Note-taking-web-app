@@ -18,9 +18,13 @@ export default function Button({
   const router = useRouter();
   const pathname = usePathname();
 
-  function navigateToAllNotes() {
-    if (btnText === "+ Create New Note" && pathname !== "/all-notes") {
-      router.push("/all-notes");
+  function navigate() {
+    if (btnText === "+ Create New Note") {
+      if (pathname.startsWith("/all-notes") && pathname !== "/all-notes") {
+        router.push("/all-notes");
+      } else if ( pathname.startsWith("/archived-notes") && pathname !== "/archived-notes") {
+        router.push("/archived-notes");
+      }
     }
   }
 
@@ -30,7 +34,7 @@ export default function Button({
       onClick={
         type === "button"
           ? () => {
-              navigateToAllNotes();
+              navigate();
               dispatch(openNoteEditor(toggle));
             }
           : undefined
