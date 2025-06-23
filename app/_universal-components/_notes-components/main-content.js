@@ -10,7 +10,7 @@ export default function MainContent({ isInArchivedNotes }) {
   return (
     <div className="flex justify-start items-start h-full">
       <NotesList isInArchivedNotes={isInArchivedNotes} />
-      {isOpen && <CreateNoteForm />}
+      {isOpen && <CreateNoteForm isInArchivedNotes={isInArchivedNotes} />}
     </div>
   );
 }

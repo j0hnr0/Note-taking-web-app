@@ -10,13 +10,13 @@ import {
 } from "@/app/all-notes/store/notes-slice";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export default function CreateNoteForm() {
+export default function CreateNoteForm({ isInArchivedNotes }) {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: async (formData) => {
-      const response = await fetch("/api/note/create", {
+      const response = await fetch(isInArchivedNotes ? "/api/note/create-archive-note" : "/api/note/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -40,7 +40,9 @@ export default function CreateNoteForm() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const title = e.target.title.value.trim() ? e.target.title.value : "Untitled Note";
+    const title = e.target.title.value.trim()
+      ? e.target.title.value
+      : "Untitled Note";
     const content = e.target.content.value.trim() ? e.target.content.value : "";
 
     const tags = e.target.tags.value
