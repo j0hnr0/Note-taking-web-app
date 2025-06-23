@@ -10,9 +10,13 @@ export default function NoteSettings({ id, isInArchivedNotes }) {
         id={id}
         svg={isInArchivedNotes ? RestoreSvg : ArchiveSvg}
         text={isInArchivedNotes ? "Restore Note" : "Archive Note"}
+      />
+      <NoteSettingsBtn
+        id={id}
+        svg={DeleteSvg}
+        text="Delete Note"
         isInArchivedNotes={isInArchivedNotes}
       />
-      <NoteSettingsBtn id={id} svg={DeleteSvg} text="Delete Note" />
     </div>
   );
 }
