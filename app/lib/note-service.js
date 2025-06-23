@@ -152,3 +152,23 @@ export async function restoreNote({ id }) {
 
   return restoredNote;
 }
+
+export async function createArchiveNote({ userId, title, content, tags }) {
+  const user = await findUserById(userId);
+
+  if (!user) {
+    throw new Error("User not Found");
+  }
+
+  const note = await prisma.note.create({
+    data: {
+      title,
+      content,
+      tags: tags || [],
+      isArchive: true,
+      userId,
+    },
+  });
+
+  return note;
+}
