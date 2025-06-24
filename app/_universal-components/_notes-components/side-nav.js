@@ -22,12 +22,6 @@ export default function SideNav() {
         </ul>
       </nav>
 
-      <hr className="mt-2 w-full border-t-[1px] border-custom-neutral-200" />
-
-      <span className="mt-2 inter font-medium text-sm text-custom-neutral-500">
-        Tags
-      </span>
-
       <TagsNav />
     </aside>
   );
