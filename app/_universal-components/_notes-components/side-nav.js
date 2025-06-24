@@ -2,7 +2,7 @@ import ArchiveSvg from "../_svg-components/archive-svg";
 import HomeSvg from "../_svg-components/home-svg";
 import Logo from "../_svg-components/logo";
 import NavMenu from "./nav-menu";
-import TagsSvg from "../_svg-components/tags-svg";
+import TagsNav from "./tags-nav";
 
 export default function SideNav() {
   return (
@@ -28,14 +28,7 @@ export default function SideNav() {
         Tags
       </span>
 
-      {/* Tags */}
-      <nav className="mt-2">
-        <ul>
-          <NavMenu svg={TagsSvg} href="/tags/dev">
-            Dev
-          </NavMenu>
-        </ul>
-      </nav>
+      <TagsNav />
     </aside>
   );
 }

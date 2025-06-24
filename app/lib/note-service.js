@@ -172,3 +172,25 @@ export async function createArchiveNote({ userId, title, content, tags }) {
 
   return note;
 }
+
+export async function getUserTags({ userId }) {
+  const user = await findUserById(userId);
+
+  if (!user) {
+    throw new Error("User not Found");
+  }
+
+  const notes = await prisma.note.findMany({
+    where: {
+      userId: userId,
+    },
+    select: {
+      tags: true,
+    },
+  });
+
+  const allTags = notes.flatMap((note) => note.tags);
+  const uniqueTags = [...new Set(allTags)];
+
+  return uniqueTags;
+}
