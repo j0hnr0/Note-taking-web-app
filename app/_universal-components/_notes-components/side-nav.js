@@ -2,6 +2,7 @@ import ArchiveSvg from "../_svg-components/archive-svg";
 import HomeSvg from "../_svg-components/home-svg";
 import Logo from "../_svg-components/logo";
 import NavMenu from "./nav-menu";
+import TagsSvg from "../_svg-components/tags-svg";
 
 export default function SideNav() {
   return (
@@ -17,6 +18,21 @@ export default function SideNav() {
           </NavMenu>
           <NavMenu svg={ArchiveSvg} href="/archived-notes">
             Archived Notes
+          </NavMenu>
+        </ul>
+      </nav>
+
+      <hr className="mt-2 w-full border-t-[1px] border-custom-neutral-200" />
+
+      <span className="mt-2 inter font-medium text-sm text-custom-neutral-500">
+        Tags
+      </span>
+
+      {/* Tags */}
+      <nav className="mt-2">
+        <ul>
+          <NavMenu svg={TagsSvg} href="/tags/dev">
+            Dev
           </NavMenu>
         </ul>
       </nav>
