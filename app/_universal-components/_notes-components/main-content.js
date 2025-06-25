@@ -4,12 +4,12 @@ import NotesList from "./notes-list";
 import CreateNoteForm from "./create-note-form";
 import { useSelector } from "react-redux";
 
-export default function MainContent({ isInArchivedNotes }) {
+export default function MainContent({ isInArchivedNotes, isInTagNotes, tagText }) {
   const isOpen = useSelector((state) => state.notes.isNoteEditorOpen);
 
   return (
     <div className="flex justify-start items-start h-full">
-      <NotesList isInArchivedNotes={isInArchivedNotes} />
+      <NotesList isInArchivedNotes={isInArchivedNotes} isInTagNotes={isInTagNotes} tagText={tagText} />
       {isOpen && <CreateNoteForm isInArchivedNotes={isInArchivedNotes} />}
     </div>
   );

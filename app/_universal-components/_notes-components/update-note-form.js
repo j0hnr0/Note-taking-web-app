@@ -48,6 +48,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
       // This will trigger refetch in DisplayDataComponent
       queryClient.invalidateQueries({ queryKey: ["noteData"] });
       queryClient.invalidateQueries({ queryKey: ["note", id] });
+      queryClient.invalidateQueries({ queryKey: ["tagsData"] });
     },
   });
 

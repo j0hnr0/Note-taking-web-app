@@ -33,6 +33,7 @@ export default function CreateNoteForm({ isInArchivedNotes }) {
     onSuccess: () => {
       // This will trigger refetch in DisplayDataComponent
       queryClient.invalidateQueries({ queryKey: ["noteData"] });
+      queryClient.invalidateQueries({ queryKey: ["tagsData"] });
       dispatch(openNoteEditor("close"));
     },
   });

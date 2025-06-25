@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import NoteCard from "./note-card";
 import { LoadingSpinner } from "../_auth-components/auth-spinner";
 
-export default function NotesList({ isInArchivedNotes }) {
+export default function NotesList({ isInArchivedNotes, isInTagNotes, tagText }) {
   const isOpen = useSelector((state) => state.notes.isNoteEditorOpen);
 
   const {
@@ -46,6 +46,12 @@ export default function NotesList({ isInArchivedNotes }) {
         <p className="mt-4 inter font-normal text-sm text-custom-neutral-700">
           All your archived notes are stored here. You can restore or delete
           them anytime.
+        </p>
+      )}
+
+      {isInTagNotes && (
+        <p className="mt-4 inter font-normal text-sm text-custom-neutral-700">
+          {`All notes with the ”${tagText}” tag are shown here.`}
         </p>
       )}
 

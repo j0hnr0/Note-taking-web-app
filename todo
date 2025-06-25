@@ -1,2 +1,1 @@
-// NOTE: Next task is to include tags-nav queryKey to 
-// allnotes/archivednotes delete, allnotes/archivednotes create, allnotes/archivednotes update
+// NOTE: Next task is to make service and api for fetching the chosen tag in notes-list.js

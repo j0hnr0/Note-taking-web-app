@@ -29,6 +29,7 @@ export default function NoteSettingsBtn({
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["noteData"] });
+      queryClient.invalidateQueries({ queryKey: ["tagsData"] });
       router.push(isInArchivedNotes ? "/archived-notes" : "/all-notes");
     },
   });
@@ -53,7 +54,6 @@ export default function NoteSettingsBtn({
     },
   });
 
-  // Continue here:
   const restoreMutation = useMutation({
     mutationFn: async (noteId) => {
       const response = await fetch(`/api/note/restore-note?id=${noteId}`, {
