@@ -194,3 +194,23 @@ export async function getUserTags({ userId }) {
 
   return uniqueTags;
 }
+
+export async function getTagNotes({ userId, tag }) {
+  const user = await findUserById(userId);
+
+  if (!user) {
+    throw new Error("User not Found");
+  }
+
+  const notes = await prisma.note.findMany({
+    where: {
+      userId: userId,
+      tag: {
+        has: tag,
+      },
+    },
+    orderBy: "desc",
+  });
+
+  return notes;
+}
