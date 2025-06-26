@@ -205,11 +205,13 @@ export async function getTagNotes({ userId, tag }) {
   const notes = await prisma.note.findMany({
     where: {
       userId: userId,
-      tag: {
+      tags: {
         has: tag,
       },
     },
-    orderBy: "desc",
+    orderBy: {
+      updatedAt: 'desc'
+    }
   });
 
   return notes;

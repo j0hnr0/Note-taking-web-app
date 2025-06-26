@@ -8,7 +8,11 @@ import { useQuery } from "@tanstack/react-query";
 import NoteCard from "./note-card";
 import { LoadingSpinner } from "../_auth-components/auth-spinner";
 
-export default function NotesList({ isInArchivedNotes, isInTagNotes, tagText }) {
+export default function NotesList({
+  isInArchivedNotes,
+  isInTagNotes,
+  tagText,
+}) {
   const isOpen = useSelector((state) => state.notes.isNoteEditorOpen);
 
   const {
@@ -19,7 +23,11 @@ export default function NotesList({ isInArchivedNotes, isInTagNotes, tagText }) 
     queryKey: ["noteData"],
     queryFn: async () => {
       const response = await fetch(
-        isInArchivedNotes ? `/api/note/get-archive-notes` : `/api/note/fetch`
+        isInArchivedNotes
+          ? `/api/note/get-archive-notes`
+          : isInTagNotes
+          ? `/api/note/get-tag-note?tag=${tagText}`
+          : `/api/note/fetch`
       );
       const data = await response.json();
 
@@ -79,6 +87,8 @@ export default function NotesList({ isInArchivedNotes, isInTagNotes, tagText }) 
             tags={note.tags}
             date={note.updatedAt}
             isInArchivedNotes={isInArchivedNotes}
+            isInTagNotes={isInTagNotes}
+            tagText={tagText}
           />
         ))}
 
