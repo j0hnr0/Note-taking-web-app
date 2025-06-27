@@ -210,8 +210,32 @@ export async function getTagNotes({ userId, tag }) {
       },
     },
     orderBy: {
-      updatedAt: 'desc'
-    }
+      updatedAt: "desc",
+    },
+  });
+
+  return notes;
+}
+
+export async function searchAllNotes({ userId, query }) {
+  const user = await findUserById(userId);
+
+  if (!user) {
+    throw new Error("User not Found");
+  }
+
+  const notes = await prisma.note.findMany({
+    where: {
+      userId: userId,
+      OR: [
+        { title: { contains: query, mode: "insensitive" } },
+        { content: { contains: query, mode: "insensitive" } },
+        { tags: { has: query } },
+      ],
+    },
+    orderBy: {
+      updatedAt: "desc",
+    },
   });
 
   return notes;
