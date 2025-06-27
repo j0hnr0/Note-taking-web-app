@@ -22,7 +22,10 @@ export default function Button({
     if (btnText === "+ Create New Note") {
       if (pathname.startsWith("/all-notes") && pathname !== "/all-notes") {
         router.push("/all-notes");
-      } else if ( pathname.startsWith("/archived-notes") && pathname !== "/archived-notes") {
+      } else if (
+        pathname.startsWith("/archived-notes") &&
+        pathname !== "/archived-notes"
+      ) {
         router.push("/archived-notes");
       }
     }
