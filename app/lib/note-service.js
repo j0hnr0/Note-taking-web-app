@@ -217,22 +217,29 @@ export async function getTagNotes({ userId, tag }) {
   return notes;
 }
 
-export async function searchAllNotes({ userId, query }) {
+export async function searchAllNotes({ userId, query, isArchive }) {
   const user = await findUserById(userId);
 
   if (!user) {
     throw new Error("User not Found");
   }
 
+  const where = {
+    userId: userId,
+    OR: [
+      { title: { contains: query, mode: "insensitive" } },
+      { content: { contains: query, mode: "insensitive" } },
+      { tags: { has: query } },
+    ],
+  };
+
+  // Only filter by archive status if specified
+  if (isArchive !== undefined) {
+    where.isArchive = isArchive;
+  }
+
   const notes = await prisma.note.findMany({
-    where: {
-      userId: userId,
-      OR: [
-        { title: { contains: query, mode: "insensitive" } },
-        { content: { contains: query, mode: "insensitive" } },
-        { tags: { has: query } },
-      ],
-    },
+    where,
     orderBy: {
       updatedAt: "desc",
     },

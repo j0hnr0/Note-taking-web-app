@@ -31,17 +31,12 @@ export default function NotesList({
       searchQuery,
     ],
     queryFn: async () => {
-      let url;
+      let url = `/api/note/search?query=${encodeURIComponent(
+        searchQuery
+      )}&archive=${isInArchivedNotes}`;
 
-      // If there's a search query, use the search API
-      if (searchQuery) {
-        url = `/api/note/search?query=${encodeURIComponent(searchQuery)}`;
-      } else if (isInArchivedNotes) {
-        url = `/api/note/get-archive-notes`;
-      } else if (isInTagNotes) {
+      if (isInTagNotes) {
         url = `/api/note/get-tag-note?tag=${tagText}`;
-      } else {
-        url = `/api/note/fetch`;
       }
 
       const response = await fetch(url);

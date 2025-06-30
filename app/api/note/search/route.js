@@ -7,6 +7,7 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const query = searchParams.get("query") || "";
+    const isArchive = searchParams.get("archive") === "true";
 
     const session = await getServerSession(authOptions);
 
@@ -16,7 +17,7 @@ export async function GET(request) {
 
     const userId = session.user.id;
 
-    const notes = await searchAllNotes({ userId, query });
+    const notes = await searchAllNotes({ userId, query, isArchive });
 
     return NextResponse.json(notes, { status: 200 });
   } catch (error) {
