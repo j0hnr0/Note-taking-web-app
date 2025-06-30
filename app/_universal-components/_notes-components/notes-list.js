@@ -7,6 +7,7 @@ import UntitledNote from "./untitled-note";
 import { useQuery } from "@tanstack/react-query";
 import NoteCard from "./note-card";
 import { LoadingSpinner } from "../_auth-components/auth-spinner";
+import { useSearchParams } from "next/navigation";
 
 export default function NotesList({
   isInArchivedNotes,
@@ -14,21 +15,36 @@ export default function NotesList({
   tagText,
 }) {
   const isOpen = useSelector((state) => state.notes.isNoteEditorOpen);
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("query") || "";
 
   const {
     data: notes,
     isPending,
     error,
   } = useQuery({
-    queryKey: ["noteData"],
+    queryKey: [
+      "noteData",
+      isInArchivedNotes,
+      isInTagNotes,
+      tagText,
+      searchQuery,
+    ],
     queryFn: async () => {
-      const response = await fetch(
-        isInArchivedNotes
-          ? `/api/note/get-archive-notes`
-          : isInTagNotes
-          ? `/api/note/get-tag-note?tag=${tagText}`
-          : `/api/note/fetch`
-      );
+      let url;
+
+      // If there's a search query, use the search API
+      if (searchQuery) {
+        url = `/api/note/search?query=${encodeURIComponent(searchQuery)}`;
+      } else if (isInArchivedNotes) {
+        url = `/api/note/get-archive-notes`;
+      } else if (isInTagNotes) {
+        url = `/api/note/get-tag-note?tag=${tagText}`;
+      } else {
+        url = `/api/note/fetch`;
+      }
+
+      const response = await fetch(url);
       const data = await response.json();
 
       if (!response.ok) {
