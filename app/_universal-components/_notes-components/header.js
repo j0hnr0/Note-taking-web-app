@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SettingSvg from "../_svg-components/setting-svg";
 import Search from "./search";
 
@@ -9,7 +10,9 @@ export default function Header({ title }) {
       </h1>
       <div className="flex justify-end items-center gap-6 w-2/4">
         <Search />
-        <SettingSvg fill="#717784" />
+        <Link href="/settings">
+          <SettingSvg fill="#717784" />
+        </Link>
       </div>
     </header>
   );
