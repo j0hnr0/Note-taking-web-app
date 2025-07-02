@@ -7,6 +7,7 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const tag = searchParams.get("tag");
+    const query = searchParams.get("query") || "";
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.id) {
@@ -15,7 +16,7 @@ export async function GET(request) {
 
     const userId = session.user.id;
 
-    const notes = await getTagNotes({ userId, tag });
+    const notes = await getTagNotes({ userId, tag, query });
 
     return NextResponse.json(notes, { status: 200 });
   } catch (error) {

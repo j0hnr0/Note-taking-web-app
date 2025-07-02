@@ -36,7 +36,7 @@ export default function NotesList({
       )}&archive=${isInArchivedNotes}`;
 
       if (isInTagNotes) {
-        url = `/api/note/get-tag-note?tag=${tagText}`;
+        url = `/api/note/get-tag-note?tag=${tagText}&query=${encodeURIComponent(searchQuery)}`;
       }
 
       const response = await fetch(url);

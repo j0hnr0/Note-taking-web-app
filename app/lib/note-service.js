@@ -195,7 +195,7 @@ export async function getUserTags({ userId }) {
   return uniqueTags;
 }
 
-export async function getTagNotes({ userId, tag }) {
+export async function getTagNotes({ userId, tag, query }) {
   const user = await findUserById(userId);
 
   if (!user) {
@@ -205,6 +205,10 @@ export async function getTagNotes({ userId, tag }) {
   const notes = await prisma.note.findMany({
     where: {
       userId: userId,
+      OR: [
+        { title: { contains: query, mode: "insensitive" } },
+        { content: { contains: query, mode: "insensitive" } },
+      ],
       tags: {
         has: tag,
       },
