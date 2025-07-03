@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ChevronRight from "../_svg-components/chevron-right";
 
-export default function NavMenu({ svg: Svg, href, children }) {
+export default function NavMenu({ svg: Svg, href, children, noColor }) {
   const pathname = usePathname();
   const isActive = pathname.startsWith(href);
 
@@ -27,7 +27,7 @@ export default function NavMenu({ svg: Svg, href, children }) {
               "text-custom-neutral-700": !isActive,
             })}
           >
-            <Svg fill={isActive ? "#335CFF" : "#2B303B"} />
+            <Svg fill={isActive ? noColor ? "#2B303B" : "#335CFF" : "#2B303B"} />
           </div>
           <span className="inter font-medium text-sm text-custom-neutral-950">
             {children}
