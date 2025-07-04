@@ -10,7 +10,7 @@ export default function Header({ title }) {
       </h1>
       <div className="flex justify-end items-center gap-6 w-2/4">
         <Search />
-        <Link href="/settings">
+        <Link href="/settings/color-theme">
           <SettingSvg fill="#717784" />
         </Link>
       </div>

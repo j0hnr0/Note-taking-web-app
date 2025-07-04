@@ -9,15 +9,15 @@ export default function Options() {
   return (
     <div className="w-full max-w-[290px] py-5 px-8 border-r-[1px] border-r-custom-neutral-200 h-full">
       <ul>
-        <NavMenu svg={ColorThemeSvg} href="/settings" noColor={true}>
+        <NavMenu svg={ColorThemeSvg} href="/settings/color-theme" noColor={true}>
           Color Theme
         </NavMenu>
 
-        <NavMenu svg={FontSvg} href="/test" noColor={true}>
+        <NavMenu svg={FontSvg} href="/settings/font-theme" noColor={true}>
           Font Theme
         </NavMenu>
 
-        <NavMenu svg={LockSvg} href="/test" noColor={true}>
+        <NavMenu svg={LockSvg} href="/settings/change-password" noColor={true}>
           Change Passowrd
         </NavMenu>
       </ul>
