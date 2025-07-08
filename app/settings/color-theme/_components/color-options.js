@@ -1,3 +1,4 @@
+import DarkSvg from "../_svg-components/dark-svg";
 import Theme from "./theme";
 
 export default function ColorOptions() {
@@ -6,11 +7,13 @@ export default function ColorOptions() {
       <small className="inter font-semibold text-base text-custom-neutral-950">
         Color Theme
       </small>
-      <small className="mt-1 inter font-normal text-sm text-custom-neutral-700">
+      <small className="mt-1 mb-3.5 inter font-normal text-sm text-custom-neutral-700">
         Choose your color theme:
       </small>
 
-      <Theme  />
+      <Theme svg={DarkSvg} title="Light Mode" subtitle="Pick a clean and classic light theme"  />
+      <Theme svg={DarkSvg} title="Dark Mode" subtitle="Select a sleek and modern dark theme"  />
+      <Theme svg={DarkSvg} title="System" subtitle="Adapts to your device’s theme"  />
     </form>
   );
 }
