@@ -26,7 +26,7 @@ export default function FontOptions() {
         subtitle="Code-like, great for a technical vibe."
       />
 
-      <ApplyChangesBtn />
+      <ApplyChangesBtn text="Apply Changes" />
     </form>
   );
 }

@@ -26,7 +26,7 @@ export default function ColorOptions() {
         subtitle="Adapts to your device’s theme"
       />
 
-      <ApplyChangesBtn />
+      <ApplyChangesBtn text="Apply Changes" />
     </form>
   );
 }
