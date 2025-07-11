@@ -2,9 +2,10 @@
 
 import EyeIcon from "@/app/_universal-components/_svg-components/eye-icon";
 import EyeSlashIcon from "@/app/_universal-components/_svg-components/eye-slash-icon";
+import clsx from "clsx";
 import { useState } from "react";
 
-export default function Input({ label, name }) {
+export default function Input({ label, name, ref, error, ...props }) {
   const [showPassword, setShowPassword] = useState(false);
   const passwordInputType = showPassword ? "text" : "password";
 
@@ -21,13 +22,21 @@ export default function Input({ label, name }) {
         {label}
       </label>
 
-      <div className="relative mt-1.5 w-full max-w-[528px] rounded-lg border-[1px] border-custom-neutral-300">
+      <div className="relative mt-1.5 w-full max-w-[528px] rounded-lg border-[1px]">
         <input
           id={name}
           name={name}
           type={passwordInputType}
-          className="w-full h-full py-3 px-4 focus:outline-none"
-        ></input>
+          ref={ref}
+          className={clsx(`w-full h-full py-3 px-4 focus:outline-none`, {
+            "border-custom-neutral-300": !error,
+            "border-red-500": error,
+          })}
+          {...props}
+        />
+        {error && (
+          <small className="inter font-normal text-red-500 text-sm"></small>
+        )}
 
         <div className="absolute top-3 right-4 bg-transparent">
           <button

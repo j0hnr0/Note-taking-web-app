@@ -18,7 +18,7 @@ export default function Options() {
         </NavMenu>
 
         <NavMenu svg={LockSvg} href="/settings/change-password" noColor={true}>
-          Change Passowrd
+          Change Password
         </NavMenu>
       </ul>
       <hr className="mt-2 w-full border-t-[1px] border-custom-neutral-200" />
