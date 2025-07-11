@@ -14,16 +14,19 @@ export default function ColorOptions() {
         svg={LightSvg}
         title="Light Mode"
         subtitle="Pick a clean and classic light theme"
+        name="light-mode"
       />
       <Theme
         svg={DarkSvg}
         title="Dark Mode"
         subtitle="Select a sleek and modern dark theme"
+        name="dark-mode"
       />
       <Theme
         svg={SystemSvg}
         title="System"
         subtitle="Adapts to your device’s theme"
+        name="system-mode"
       />
 
       <ApplyChangesBtn text="Apply Changes" />
