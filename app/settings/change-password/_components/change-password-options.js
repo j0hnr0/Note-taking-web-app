@@ -23,6 +23,7 @@ export default function ChangePasswordOptions() {
     <form
       onSubmit={handleSubmit(handleForm)}
       className="flex flex-col h-full py-5 px-6 w-full max-w-[562px]"
+      noValidate
     >
       <small className="inter font-semibold text-base text-custom-neutral-950">
         Change Password
@@ -65,6 +66,7 @@ export default function ChangePasswordOptions() {
       <Input
         label="Confirm New Password"
         name="confirm-new-password"
+        error={errors.confirmNewPassword?.message}
         {...register("confirmNewPassword", {
           required: "Please confirm your password",
           validate: (value) =>

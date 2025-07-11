@@ -22,21 +22,23 @@ export default function Input({ label, name, ref, error, ...props }) {
         {label}
       </label>
 
-      <div className="relative mt-1.5 w-full max-w-[528px] rounded-lg border-[1px]">
+      <div
+        className={clsx(
+          `relative mt-1.5 w-full max-w-[528px] rounded-lg border-[1px]`,
+          {
+            "border-custom-neutral-300": !error,
+            "border-red-500": error,
+          }
+        )}
+      >
         <input
           id={name}
           name={name}
           type={passwordInputType}
           ref={ref}
-          className={clsx(`w-full h-full py-3 px-4 focus:outline-none`, {
-            "border-custom-neutral-300": !error,
-            "border-red-500": error,
-          })}
+          className="w-full h-full py-3 px-4 focus:outline-none"
           {...props}
         />
-        {error && (
-          <small className="inter font-normal text-red-500 text-sm"></small>
-        )}
 
         <div className="absolute top-3 right-4 bg-transparent">
           <button
@@ -48,6 +50,11 @@ export default function Input({ label, name, ref, error, ...props }) {
           </button>
         </div>
       </div>
+      {error && (
+        <small className="block inter font-normal text-red-500 text-sm">
+          {error}
+        </small>
+      )}
     </>
   );
 }
