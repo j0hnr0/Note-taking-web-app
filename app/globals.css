@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @theme inline {
+
+    /* For Dark Mode */
+    --color-scheme: light dark;
+
     --color-custom-neutral-100: #F3F5F8;
     --color-custom-neutral-200: #E0E4EA;
     --color-custom-neutral-950: #0E121B;
@@ -14,6 +18,12 @@
     --breakpoint-custom-lg: 1025px;
     --breakpoint-custom-md: 769px;
     --breakpoint-custom-sm: 476px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
 }
 
 .inter {

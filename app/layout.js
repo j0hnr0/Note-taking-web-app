@@ -4,6 +4,7 @@ import { AuthProvider } from "./contexts/auth-provider";
 import { Providers } from "./provider/providers";
 import { ReduxProvider } from "./provider/redux-provider";
 import TanstackProvider from "./provider/tanstack-provider";
+import { ThemesProvider } from "./provider/themes-provider";
 
 const inter = localFont({
   src: [
@@ -39,15 +40,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
-        <Providers>
-          <AuthProvider>
-            <TanstackProvider>
-              <ReduxProvider>{children}</ReduxProvider>
-            </TanstackProvider>
-          </AuthProvider>
-        </Providers>
+        <ThemesProvider>
+          <Providers>
+            <AuthProvider>
+              <TanstackProvider>
+                <ReduxProvider>{children}</ReduxProvider>
+              </TanstackProvider>
+            </AuthProvider>
+          </Providers>
+        </ThemesProvider>
       </body>
     </html>
   );
