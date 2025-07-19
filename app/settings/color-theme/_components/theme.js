@@ -1,7 +1,22 @@
-export default function Theme({ svg: Svg, title, subtitle, name }) {
+export default function Theme({
+  svg: Svg,
+  title,
+  subtitle,
+  name,
+  value,
+  checked,
+  onChange,
+}) {
   return (
     <label className="mt-4 w-full max-w-[528px] rounded-xl border-[1px] border-custom-neutral-200 p-4 flex justify-between items-center cursor-pointer has-[:checked]:bg-custom-neutral-100">
-      <input type="radio" name={name} className="peer sr-only" />
+      <input
+        type="radio"
+        name={name}
+        value={value}
+        checked={checked}
+        onChange={onChange}
+        className="peer sr-only"
+      />
 
       <div className="flex justify-start items-center gap-4">
         <div className="rounded-xl bg-white border-[1px] border-custom-neutral-200 p-2">
