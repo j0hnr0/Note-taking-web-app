@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
 
     /* For Dark Mode */
@@ -8,22 +10,16 @@
     --color-custom-neutral-100: #F3F5F8;
     --color-custom-neutral-200: #E0E4EA;
     --color-custom-neutral-950: #0E121B;
+    --color-custom-neutral-800: #232530;
     --color-custom-neutral-600: #525866;
     --color-custom-neutral-300: #CACFD8;
     --color-custom-blue-500: #335CFF;
     --color-custom-blue-50: #EBF1FF;
-    --color-custom-neutral-200: #E0E4EA;
     --color-custom-neutral-700: #2B303B;
     --color-custom-neutral-500: #717784;
     --breakpoint-custom-lg: 1025px;
     --breakpoint-custom-md: 769px;
     --breakpoint-custom-sm: 476px;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        color-scheme: dark;
-    }
 }
 
 .inter {
