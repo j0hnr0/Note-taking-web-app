@@ -8,6 +8,7 @@ export default function EyeSlashIcon() {
       viewBox="0 0 24 24"
     >
       <path
+        className="stroke-[#0E121B] dark:stroke-neutral-500"
         stroke="#0E121B"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -15,6 +16,7 @@ export default function EyeSlashIcon() {
         d="M6.42 17.73c-2.23-1.46-3.67-3.66-3.67-5.59 0-3.28 4.14-7.3 9.25-7.3 2.09 0 4.03.67 5.59 1.71M19.85 8.61c.891 1.13 1.41 2.38 1.41 3.53 0 3.28-4.15 7.3-9.26 7.3-.91 0-1.799-.13-2.63-.36"
       />
       <path
+        className="stroke-[#0E121B] dark:stroke-neutral-500"
         stroke="#0E121B"
         strokeLinecap="round"
         strokeLinejoin="round"
