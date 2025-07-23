@@ -4,10 +4,20 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ChevronRight from "../_svg-components/chevron-right";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 export default function NavMenu({ svg: Svg, href, children, noColor }) {
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
   const pathname = usePathname();
   const isActive = pathname.startsWith(href);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <li className="mb-1">
@@ -16,7 +26,7 @@ export default function NavMenu({ svg: Svg, href, children, noColor }) {
         className={clsx(
           "w-full px-3 py-2.5 rounded-lg flex justify-between items-center",
           {
-            "bg-custom-neutral-100": isActive,
+            "bg-custom-neutral-100 dark:bg-custom-neutral-800": isActive,
           }
         )}
       >
@@ -27,9 +37,19 @@ export default function NavMenu({ svg: Svg, href, children, noColor }) {
               "text-custom-neutral-700": !isActive,
             })}
           >
-            <Svg fill={isActive ? noColor ? "#2B303B" : "#335CFF" : "#2B303B"} />
+            <Svg
+              fill={
+                isActive
+                  ? noColor
+                    ? "#2B303B"
+                    : "#335CFF"
+                  : resolvedTheme === "dark"
+                  ? "#E0E4EA"
+                  : "#2B303B"
+              }
+            />
           </div>
-          <span className="inter font-medium text-sm text-custom-neutral-950">
+          <span className="inter font-medium text-sm text-custom-neutral-950 dark:text-neutral-200">
             {children}
           </span>
         </div>
