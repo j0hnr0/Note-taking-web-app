@@ -7,9 +7,17 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { LoadingSpinner } from "../_auth-components/auth-spinner";
 import Link from "next/link";
 import clsx from "clsx";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 export default function UpdateNoteForm({ id, isInArchivedNotes }) {
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const {
     data: note,
@@ -85,26 +93,28 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
     );
   }
 
+  if (!mounted) return null;
+
   return (
     <form
       id="create-note-form"
       onSubmit={handleSubmit}
-      className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] border-r-[1px] border-r-custom-neutral-200"
+      className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] border-r-[1px] border-r-custom-neutral-200 dark:border-r-custom-neutral-800"
     >
       <input
         type="text"
         name="title"
-        className="w-full text-custom-neutral-950 inter font-bold text-2xl focus:outline-none"
+        className="w-full text-custom-neutral-950 dark:text-white inter font-bold text-2xl focus:outline-none"
         placeholder="Enter a title..."
         defaultValue={note.title || "Untitled Note"}
       />
 
       <div className="mt-4 flex justify-start items-center gap-2">
         <div className="w-full max-w-[115px] flex justify-start items-center gap-1.5">
-          <TagSvg fill="#2B303B" width="16" height="16" />
+          <TagSvg fill={resolvedTheme === "dark" ? "#CACFD8" : "#2B303B"} width="16" height="16" />
           <label
             htmlFor="tags"
-            className="text-custom-neutral-700 inter font-normal text-sm"
+            className="text-custom-neutral-700 dark:text-custom-neutral-300 inter font-normal text-sm"
           >
             Tags
           </label>
@@ -113,7 +123,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
           type="text"
           id="tags"
           name="tags"
-          className="w-full text-custom-neutral-950 inter font-normal text-sm rounded-sm"
+          className="w-full text-custom-neutral-950 dark:text-white inter font-normal text-sm rounded-sm"
           placeholder="Add tags separated by commas (e.g. Work, Planning)"
           defaultValue={note.tags?.join(", ") || ""}
         />
@@ -121,10 +131,10 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
 
       <div className="mt-3 flex justify-start items-center gap-2">
         <div className="w-full max-w-[115px] flex justify-start items-center gap-1.5">
-          <ClockSvg fill="#2B303B" width="16" height="16" />
+          <ClockSvg fill={resolvedTheme === "dark" ? "#FF0000" : "#FF0000"} width="16" height="16" />
           <label
             htmlFor="last-edited"
-            className="text-custom-neutral-700 inter font-normal text-sm"
+            className="text-custom-neutral-700 dark:text-custom-neutral-300 inter font-normal text-sm"
           >
             Last edited
           </label>
@@ -133,7 +143,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
           type="text"
           id="last-edited"
           name="last-edited"
-          className="w-full text-custom-neutral-950 inter font-normal text-sm rounded-sm"
+          className="w-full text-custom-neutral-950 dark:text-custom-neutral-300 inter font-normal text-sm rounded-sm"
           placeholder="Not yet saved"
           defaultValue={new Date(note.updatedAt).toLocaleDateString("en-GB", {
             day: "numeric",
@@ -144,12 +154,12 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
         />
       </div>
 
-      <hr className="mt-4 w-full h-[1px] border-custom-neutral-200" />
+      <hr className="mt-4 w-full h-[1px] border-custom-neutral-200 dark:border-custom-neutral-800" />
 
       <div className="flex-grow flex overflow-hidden">
         <textarea
           name="content"
-          className="mt-4 w-full resize-none text-custom-neutral-700 inter font-normal text-sm focus:outline-none"
+          className="mt-4 w-full resize-none text-custom-neutral-700 dark:text-custom-neutral-100 inter font-normal text-sm focus:outline-none"
           placeholder="Start typing your note here..."
           defaultValue={note.content || ""}
         ></textarea>

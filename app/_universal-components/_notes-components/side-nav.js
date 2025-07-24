@@ -7,7 +7,7 @@ import TagsNav from "./tags-nav";
 export default function SideNav() {
   return (
     <aside
-      className="w-full max-w-[272px] h-full px-4 pt-6 border-r-[1px] border-r-custom-neutral-200
+      className="w-full max-w-[272px] h-full px-4 pt-6 border-r-[1px] border-r-custom-neutral-200 dark:border-r-custom-neutral-800
     max-custom-lg:hidden"
     >
       <Logo />

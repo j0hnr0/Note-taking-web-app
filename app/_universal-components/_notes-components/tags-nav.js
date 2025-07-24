@@ -29,7 +29,7 @@ export default function TagsNav() {
 
   return (
     <>
-      <hr className="mt-2 w-full border-t-[1px] border-custom-neutral-200" />
+      <hr className="mt-2 w-full border-t-[1px] border-custom-neutral-200 dark:border-custom-neutral-800" />
       <span className="mt-2 inter font-medium text-sm text-custom-neutral-500">
         Tags
       </span>

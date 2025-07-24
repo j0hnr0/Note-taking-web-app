@@ -25,14 +25,14 @@ export default function NoteCard({ id, title, tags, date, isInArchivedNotes, isI
       href={isInArchivedNotes ? `/archived-notes/${id}` : isInTagNotes ? `/tags/${tagText}/${id}` : `/all-notes/${id}`}
       onClick={handleClick}
       className={clsx(
-        "mt-1 w-full p-2 rounded-md border-b-[1px] border-b-custom-neutral-200 hover:bg-custom-neutral-100 block hover:border-b-custom-neutral-100",
+        "mt-1 w-full p-2 rounded-md border-b-[1px] border-b-custom-neutral-200 dark:border-b-custom-neutral-800 hover:bg-custom-neutral-100 hover:dark:bg-custom-neutral-800 block hover:border-b-custom-neutral-100 hover:dark:border-b-custom-neutral-800",
         {
-          "bg-custom-neutral-100 border-b-custom-neutral-100":
+          "bg-custom-neutral-100 dark:bg-custom-neutral-800 border-b-custom-neutral-100 dark:border-b-custom-neutral-800":
             isInArchivedNotes ? pathname === `/archived-notes/${id}` : pathname === `/all-notes/${id}`,
         }
       )}
     >
-      <h5 className="inter font-semibold text-base text-custom-neutral-950">
+      <h5 className="inter font-semibold text-base text-custom-neutral-950 dark:text-white">
         {title}
       </h5>
 
@@ -41,16 +41,16 @@ export default function NoteCard({ id, title, tags, date, isInArchivedNotes, isI
           tags.map((tag, index) => (
             <div
               key={index}
-              className="w-min mt-3 py-0.5 px-1.5 text-center rounded-sm bg-custom-neutral-200"
+              className="w-min mt-3 py-0.5 px-1.5 text-center rounded-sm bg-custom-neutral-200 dark:bg-custom-neutral-600"
             >
-              <span className="inter font-normal text-xs text-custom-neutral-950 block">
+              <span className="inter font-normal text-xs text-custom-neutral-950 dark:text-white block">
                 {tag}
               </span>
             </div>
           ))}
       </div>
 
-      <span className="mt-3 inter font-normal text-xs text-custom-neutral-700">
+      <span className="mt-3 inter font-normal text-xs text-custom-neutral-700 dark:text-custom-neutral-300">
         {formattedDate}
       </span>
     </Link>
