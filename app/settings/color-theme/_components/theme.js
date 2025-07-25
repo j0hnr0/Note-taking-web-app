@@ -1,3 +1,8 @@
+"use client";
+
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
 export default function Theme({
   svg: Svg,
   title,
@@ -7,6 +12,15 @@ export default function Theme({
   checked,
   onChange,
 }) {
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <label className="mt-4 w-full max-w-[528px] rounded-xl border-[1px] border-custom-neutral-200 dark:border-custom-neutral-800 p-4 flex justify-between items-center cursor-pointer has-[:checked]:bg-custom-neutral-100 has-[:checked]:dark:bg-custom-neutral-800 has-[:checked]:dark:border-custom-neutral-700">
       <input
@@ -20,7 +34,7 @@ export default function Theme({
 
       <div className="flex justify-start items-center gap-4">
         <div className="rounded-xl bg-white dark:bg-custom-neutral-950 border-[1px] border-custom-neutral-200 dark:border-custom-neutral-700 p-2">
-          <Svg />
+          <Svg fill={resolvedTheme === "dark" ? "#FFFFFF" : "#0E121B"} />
         </div>
 
         <div>

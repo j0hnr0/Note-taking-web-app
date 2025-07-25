@@ -1,6 +1,6 @@
 "use client";
 
-export default function LogoutSvg() {
+export default function LogoutSvg({ fill }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,7 +10,7 @@ export default function LogoutSvg() {
       viewBox="0 0 24 24"
     >
       <path
-        stroke="#0E121B"
+        stroke={fill}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.8"
