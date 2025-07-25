@@ -13,11 +13,11 @@ export default function UntitledNote() {
 
   return (
     <div
-      className={`mt-4 p-2 w-full rounded-md bg-custom-neutral-100 transform transition-all duration-300 ease-out ${
+      className={`mt-4 p-2 w-full rounded-md bg-custom-neutral-100 dark:bg-custom-neutral-800 transform transition-all duration-300 ease-out ${
         isVisible ? "translate-y-0 opacity-100" : "-translate-y-8 opacity-0"
       }`}
     >
-      <h5 className="inter font-semibold text-base text-custom-neutral-950 truncate overflow-hidden">
+      <h5 className="inter font-semibold text-base text-custom-neutral-950 dark:text-white truncate overflow-hidden">
         {title}
       </h5>
     </div>

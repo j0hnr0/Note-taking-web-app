@@ -131,7 +131,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
 
       <div className="mt-3 flex justify-start items-center gap-2">
         <div className="w-full max-w-[115px] flex justify-start items-center gap-1.5">
-          <ClockSvg fill={resolvedTheme === "dark" ? "#FF0000" : "#FF0000"} width="16" height="16" />
+          <ClockSvg fill={resolvedTheme === "dark" ? "#CACFD8" : "#2B303B"} width="16" height="16" />
           <label
             htmlFor="last-edited"
             className="text-custom-neutral-700 dark:text-custom-neutral-300 inter font-normal text-sm"
@@ -165,7 +165,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
         ></textarea>
       </div>
 
-      <hr className="mt-4 w-full h-[1px] border-custom-neutral-200 " />
+      <hr className="mt-4 w-full h-[1px] border-custom-neutral-200 dark:border-custom-neutral-800" />
 
       <div className="mt-4 flex justify-start gap-4">
         <Button
@@ -182,10 +182,10 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
             `w-full max-w-[78px] py-3 text-center rounded-lg`,
             mutation.isPending
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-custom-neutral-100 cursor-pointer"
+              : "bg-custom-neutral-100 dark:bg-custom-neutral-800 cursor-pointer"
           )}
         >
-          <h5 className="inter font-medium text-sm text-custom-neutral-600">
+          <h5 className="inter font-medium text-sm text-custom-neutral-600 dark:text-custom-neutral-400">
             {mutation.isPending ? (
               <span className="mr-2 inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
             ) : (

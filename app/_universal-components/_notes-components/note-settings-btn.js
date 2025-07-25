@@ -1,7 +1,9 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function NoteSettingsBtn({
   id,
@@ -11,6 +13,12 @@ export default function NoteSettingsBtn({
 }) {
   const queryClient = useQueryClient();
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const deleteMutation = useMutation({
     mutationFn: async (noteId) => {
@@ -86,6 +94,8 @@ export default function NoteSettingsBtn({
     restoreMutation.mutate(id);
   }
 
+  if (!mounted) return null;
+
   return (
     <button
       type="button"
@@ -96,7 +106,7 @@ export default function NoteSettingsBtn({
           ? handleRestoreClick
           : handleArchiveClick
       }
-      className="cursor-pointer w-full rounded-lg py-3 px-4 flex justify-start items-center gap-2 border-[1px] border-custom-neutral-300
+      className="cursor-pointer w-full rounded-lg py-3 px-4 flex justify-start items-center gap-2 border-[1px] border-custom-neutral-300 dark:border-custom-neutral-600
       hover:bg-custom-neutral-100"
       disabled={
         deleteMutation.isPending ||
@@ -104,8 +114,8 @@ export default function NoteSettingsBtn({
         restoreMutation.isPending
       }
     >
-      <Svg fill="#2B303B" />
-      <span className="block inter font-medium text-sm text-custom-neutral-950">
+      <Svg fill={resolvedTheme === "dark" ? "#FFFFFF" : "#2B303B"} />
+      <span className="block inter font-medium text-sm text-custom-neutral-950 dark:text-white">
         {deleteMutation.isPending
           ? "Deleting..."
           : archiveMutation.isPending
