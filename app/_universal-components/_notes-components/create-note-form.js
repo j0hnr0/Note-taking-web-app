@@ -90,7 +90,7 @@ export default function CreateNoteForm({ isInArchivedNotes }) {
     <form
       id="create-note-form"
       onSubmit={handleSubmit}
-      className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] border-r-[1px] border-r-custom-neutral-200"
+      className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] border-r-[1px] border-r-custom-neutral-200 dark:border-r-custom-neutral-800"
     >
       <input
         type="text"
@@ -163,8 +163,8 @@ export default function CreateNoteForm({ isInArchivedNotes }) {
         <Button
           type="button"
           btnText="Cancel"
-          textColor="text-custom-neutral-600"
-          bgColor="bg-custom-neutral-100"
+          textColor="text-custom-neutral-600 dark:text-custom-neutral-400"
+          bgColor="bg-custom-neutral-100 dark:bg-custom-neutral-800"
           maxWidth="max-w-[78px]"
           toggle="close"
           isLoading={mutation.isPending}

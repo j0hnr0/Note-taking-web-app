@@ -41,7 +41,7 @@ export default function NavMenu({ svg: Svg, href, children, noColor }) {
               fill={
                 isActive
                   ? noColor
-                    ? "#2B303B"
+                    ? resolvedTheme === "dark" ? "#335CFF" : "#2B303B"
                     : "#335CFF"
                   : resolvedTheme === "dark"
                   ? "#E0E4EA"

@@ -22,13 +22,13 @@ export default function ColorOptions() {
     setSelectedTheme(theme);
   }, [theme]);
 
-  if (!mounted) {
-    return null;
-  }
-
   function handleTheme(e) {
     e.preventDefault();
-    setTheme(selectedTheme)
+    setTheme(selectedTheme);
+  }
+
+  if (!mounted) {
+    return null;
   }
 
   return (

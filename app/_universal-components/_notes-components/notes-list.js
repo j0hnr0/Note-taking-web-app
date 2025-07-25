@@ -62,7 +62,7 @@ export default function NotesList({
       <div className="mb-3"></div>
 
       {isInArchivedNotes && (
-        <p className="mt-4 inter font-normal text-sm text-custom-neutral-700">
+        <p className="mt-4 inter font-normal text-sm text-custom-neutral-700 dark:text-custom-neutral-200">
           All your archived notes are stored here. You can restore or delete
           them anytime.
         </p>
