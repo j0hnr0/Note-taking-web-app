@@ -5,6 +5,7 @@ import { Providers } from "./provider/providers";
 import { ReduxProvider } from "./provider/redux-provider";
 import TanstackProvider from "./provider/tanstack-provider";
 import { ThemesProvider } from "./provider/themes-provider";
+import { FontProvider } from "./contexts/font-context";
 
 const inter = localFont({
   src: [
@@ -43,13 +44,15 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
         <ThemesProvider>
-          <Providers>
-            <AuthProvider>
-              <TanstackProvider>
-                <ReduxProvider>{children}</ReduxProvider>
-              </TanstackProvider>
-            </AuthProvider>
-          </Providers>
+          <FontProvider>
+            <Providers>
+              <AuthProvider>
+                <TanstackProvider>
+                  <ReduxProvider>{children}</ReduxProvider>
+                </TanstackProvider>
+              </AuthProvider>
+            </Providers>
+          </FontProvider>
         </ThemesProvider>
       </body>
     </html>
