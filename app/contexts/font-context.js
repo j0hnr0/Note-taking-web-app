@@ -1,11 +1,17 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const FontContext = createContext();
 
 export function FontProvider({ children }) {
   const [selectedFont, setSelectedFont] = useState("inter");
+
+  useEffect(() => {
+    document.body.classList.remove('inter', 'serif', 'monospace');
+
+    document.body.classList.add(selectedFont);
+  }, [selectedFont])
 
   return (
     <FontContext.Provider value={{ selectedFont, setSelectedFont }}>

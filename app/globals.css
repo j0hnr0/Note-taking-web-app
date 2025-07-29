@@ -26,3 +26,11 @@
 .inter {
     font-family: var(--font-inter);
 }
+
+.serif {
+    font-family: var(--font-serif);
+}
+
+.monospace {
+    font-family: var(--font-monospace);
+}
