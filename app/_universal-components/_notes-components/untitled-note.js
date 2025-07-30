@@ -17,7 +17,7 @@ export default function UntitledNote() {
         isVisible ? "translate-y-0 opacity-100" : "-translate-y-8 opacity-0"
       }`}
     >
-      <h5 className="inter font-semibold text-base text-custom-neutral-950 dark:text-white truncate overflow-hidden">
+      <h5 className="font-semibold text-base text-custom-neutral-950 dark:text-white truncate overflow-hidden">
         {title}
       </h5>
     </div>

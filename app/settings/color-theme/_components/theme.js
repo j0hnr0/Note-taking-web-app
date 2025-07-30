@@ -38,10 +38,10 @@ export default function Theme({
         </div>
 
         <div>
-          <strong className="inter font-medium text-sm text-custom-neutral-950 dark:text-white">
+          <strong className=" font-medium text-sm text-custom-neutral-950 dark:text-white">
             {title}
           </strong>
-          <small className="block mt-1.5 inter font-normal text-xs text-custom-neutral-700 dark:text-custom-neutral-300">
+          <small className="block mt-1.5  font-normal text-xs text-custom-neutral-700 dark:text-custom-neutral-300">
             {subtitle}
           </small>
         </div>

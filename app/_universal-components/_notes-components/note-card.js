@@ -32,7 +32,7 @@ export default function NoteCard({ id, title, tags, date, isInArchivedNotes, isI
         }
       )}
     >
-      <h5 className="inter font-semibold text-base text-custom-neutral-950 dark:text-white">
+      <h5 className="font-semibold text-base text-custom-neutral-950 dark:text-white">
         {title}
       </h5>
 
@@ -43,14 +43,14 @@ export default function NoteCard({ id, title, tags, date, isInArchivedNotes, isI
               key={index}
               className="w-min mt-3 py-0.5 px-1.5 text-center rounded-sm bg-custom-neutral-200 dark:bg-custom-neutral-600"
             >
-              <span className="inter font-normal text-xs text-custom-neutral-950 dark:text-white block">
+              <span className="font-normal text-xs text-custom-neutral-950 dark:text-white block">
                 {tag}
               </span>
             </div>
           ))}
       </div>
 
-      <span className="mt-3 inter font-normal text-xs text-custom-neutral-700 dark:text-custom-neutral-300">
+      <span className="mt-3 font-normal text-xs text-custom-neutral-700 dark:text-custom-neutral-300">
         {formattedDate}
       </span>
     </Link>

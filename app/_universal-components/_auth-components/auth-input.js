@@ -29,7 +29,7 @@ export default function AuthInput({
       <div className="flex justify-between items-center">
         <label
           htmlFor={type}
-          className="inter font-medium text-sm text-custom-neutral-950 dark:text-white"
+          className="font-medium text-sm text-custom-neutral-950 dark:text-white"
         >
           {label}
         </label>
@@ -37,7 +37,7 @@ export default function AuthInput({
           <Link
             href="/forgot-password"
             type="button"
-            className="inter font-normal text-xs text-custom-neutral-600 dark:text-custom-neutral-400 underline cursor-pointer"
+            className="font-normal text-xs text-custom-neutral-600 dark:text-custom-neutral-400 underline cursor-pointer"
           >
             Forgot
           </Link>
@@ -51,7 +51,7 @@ export default function AuthInput({
           type={showEye ? passwordInputType : type}
           ref={ref}
           className={clsx(
-            `inter font-normal text-sm text-custom-neutral-950 dark:text-custom-neutral-500 w-full rounded-lg py-3 px-4 border-[1px]
+            `font-normal text-sm text-custom-neutral-950 dark:text-custom-neutral-500 w-full rounded-lg py-3 px-4 border-[1px]
           focus:outline-none`,
             {
               "border-custom-neutral-300 dark:border-custom-neutral-600": !error,
@@ -61,7 +61,7 @@ export default function AuthInput({
           {...props}
         />
         {error && (
-          <span className="inter font-normal text-red-500 text-sm">
+          <span className="font-normal text-red-500 text-sm">
             {error}
           </span>
         )}

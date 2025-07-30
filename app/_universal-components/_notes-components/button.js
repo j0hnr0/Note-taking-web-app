@@ -50,7 +50,7 @@ export default function Button({
           : `${bgColor} cursor-pointer`
       )}
     >
-      <h5 className={`inter font-medium text-sm ${textColor}`}>
+      <h5 className={`font-medium text-sm ${textColor}`}>
         {isLoading ? (
           <span className="mr-2 inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
         ) : (

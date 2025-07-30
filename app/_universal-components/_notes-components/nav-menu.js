@@ -49,7 +49,7 @@ export default function NavMenu({ svg: Svg, href, children, noColor }) {
               }
             />
           </div>
-          <span className="inter font-medium text-sm text-custom-neutral-950 dark:text-neutral-200">
+          <span className="font-medium text-sm text-custom-neutral-950 dark:text-neutral-200">
             {children}
           </span>
         </div>

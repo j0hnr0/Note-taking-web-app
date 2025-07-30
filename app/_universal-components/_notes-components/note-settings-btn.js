@@ -115,7 +115,7 @@ export default function NoteSettingsBtn({
       }
     >
       <Svg fill={resolvedTheme === "dark" ? "#FFFFFF" : "#2B303B"} />
-      <span className="block inter font-medium text-sm text-custom-neutral-950 dark:text-white">
+      <span className="block font-medium text-sm text-custom-neutral-950 dark:text-white">
         {deleteMutation.isPending
           ? "Deleting..."
           : archiveMutation.isPending

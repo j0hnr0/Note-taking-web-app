@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 const FontContext = createContext();
 
 export function FontProvider({ children }) {
-  const [selectedFont, setSelectedFont] = useState("inter");
+  const [selectedFont, setSelectedFont] = useState("monospace");
 
   useEffect(() => {
     document.body.classList.remove('inter', 'serif', 'monospace');

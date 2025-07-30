@@ -17,7 +17,7 @@ export default function MNavMenu({ label, svg: Svg, href }) {
         >
           <Svg fill={pathname === href ? "#335CFF" : "#525866"} width="24" height="24" />
           <span
-            className={clsx("max-custom-sm:hidden block inter font-normal text-xs", {
+            className={clsx("max-custom-sm:hidden block font-normal text-xs", {
               "text-custom-blue-500": pathname === href,
               "text-custom-neutral-600": pathname !== href,
             })}

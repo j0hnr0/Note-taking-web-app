@@ -20,7 +20,7 @@ export default function AuthGoogleBtn() {
         />
       </svg>
       <h5
-        className="inter font-medium text-custom-neutral-950 dark:text-white text-base"
+        className="font-medium text-custom-neutral-950 dark:text-white text-base"
       >
         Google
       </h5>

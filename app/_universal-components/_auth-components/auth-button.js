@@ -11,7 +11,7 @@ export default function AuthButton({ btnText, isLoading }) {
           "bg-gray-400 cursor-not-allowed": isLoading,
         })}
       >
-        <h5 className="inter font-semibold text-base text-white">
+        <h5 className="font-semibold text-base text-white">
           {isLoading ? (
             <span className="mr-2 inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
           ) : (

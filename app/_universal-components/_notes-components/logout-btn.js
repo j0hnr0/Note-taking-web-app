@@ -41,7 +41,7 @@ export default function LogoutBtn({ svg: Svg, children }) {
       ) : (
         <Svg fill={resolvedTheme === "dark" ? "#E0E4EA" : "#0E121B"} />
       )}
-      <span className="inter font-medium text-sm text-custom-neutral-950 dark:text-custom-neutral-200">
+      <span className=" font-medium text-sm text-custom-neutral-950 dark:text-custom-neutral-200">
         {isLoading ? "Logging out..." : children}
       </span>
     </button>

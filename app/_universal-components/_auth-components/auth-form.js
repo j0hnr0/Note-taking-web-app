@@ -119,7 +119,7 @@ export default function AuthForm({
       {status.type && (
         <div className="mt-2.5 flex justify-center">
           <span
-            className={clsx(`inter font-normal text-sm`, {
+            className={clsx(`font-normal text-sm`, {
               "text-green-700": status.type === "success",
               "text-red-500": status.type === "error",
             })}

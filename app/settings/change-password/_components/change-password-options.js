@@ -25,7 +25,7 @@ export default function ChangePasswordOptions() {
       className="flex flex-col h-full py-5 px-6 w-full max-w-[562px]"
       noValidate
     >
-      <small className="inter font-semibold text-base text-custom-neutral-950">
+      <small className="font-semibold text-base text-custom-neutral-950">
         Change Password
       </small>
 

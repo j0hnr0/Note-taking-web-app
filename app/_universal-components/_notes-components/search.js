@@ -27,7 +27,7 @@ export default function Search() {
       <SearchSvg fill="#717784" />
       <input
         type="text"
-        className="inter font-normal text-sm text-custom-neutral-500 focus:outline-none w-full h-full"
+        className="font-normal text-sm text-custom-neutral-500 focus:outline-none w-full h-full"
         placeholder="Search by title, content, or tags..."
         onChange={(e) => handleSearch(e.target.value)}
         defaultValue={searchParams.get("query")?.toString()}

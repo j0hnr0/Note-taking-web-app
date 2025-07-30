@@ -17,7 +17,7 @@ export default function Input({ label, name, ref, error, ...props }) {
     <>
       <label
         htmlFor={name}
-        className="mt-6 text-custom-neutral-950 inter font-medium text-sm"
+        className="mt-6 text-custom-neutral-950  font-medium text-sm"
       >
         {label}
       </label>
@@ -51,7 +51,7 @@ export default function Input({ label, name, ref, error, ...props }) {
         </div>
       </div>
       {error && (
-        <small className="block inter font-normal text-red-500 text-sm">
+        <small className="block  font-normal text-red-500 text-sm">
           {error}
         </small>
       )}

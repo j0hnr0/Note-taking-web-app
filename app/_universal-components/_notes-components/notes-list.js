@@ -62,14 +62,14 @@ export default function NotesList({
       <div className="mb-3"></div>
 
       {isInArchivedNotes && (
-        <p className="mt-4 inter font-normal text-sm text-custom-neutral-700 dark:text-custom-neutral-200">
+        <p className="mt-4 font-normal text-sm text-custom-neutral-700 dark:text-custom-neutral-200">
           All your archived notes are stored here. You can restore or delete
           them anytime.
         </p>
       )}
 
       {isInTagNotes && (
-        <p className="mt-4 inter font-normal text-sm text-custom-neutral-700">
+        <p className="mt-4 font-normal text-sm text-custom-neutral-700 dark:text-white">
           {`All notes with the ”${tagText}” tag are shown here.`}
         </p>
       )}
@@ -83,7 +83,7 @@ export default function NotesList({
       )}
 
       {error && (
-        <div className="inter font-normal p-6 text-red-500">
+        <div className="font-normal p-6 text-red-500">
           Error loading notes: {error.message}
         </div>
       )}

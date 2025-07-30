@@ -87,7 +87,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
 
   if (error) {
     return (
-      <div className="inter font-normal p-6 text-red-500">
+      <div className=" font-normal p-6 text-red-500">
         Error loading note: {error.message}
       </div>
     );
@@ -104,7 +104,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
       <input
         type="text"
         name="title"
-        className="w-full text-custom-neutral-950 dark:text-white inter font-bold text-2xl focus:outline-none"
+        className="w-full text-custom-neutral-950 dark:text-white  font-bold text-2xl focus:outline-none"
         placeholder="Enter a title..."
         defaultValue={note.title || "Untitled Note"}
       />
@@ -114,7 +114,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
           <TagSvg fill={resolvedTheme === "dark" ? "#CACFD8" : "#2B303B"} width="16" height="16" />
           <label
             htmlFor="tags"
-            className="text-custom-neutral-700 dark:text-custom-neutral-300 inter font-normal text-sm"
+            className="text-custom-neutral-700 dark:text-custom-neutral-300  font-normal text-sm"
           >
             Tags
           </label>
@@ -123,7 +123,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
           type="text"
           id="tags"
           name="tags"
-          className="w-full text-custom-neutral-950 dark:text-white inter font-normal text-sm rounded-sm"
+          className="w-full text-custom-neutral-950 dark:text-white  font-normal text-sm rounded-sm"
           placeholder="Add tags separated by commas (e.g. Work, Planning)"
           defaultValue={note.tags?.join(", ") || ""}
         />
@@ -134,7 +134,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
           <ClockSvg fill={resolvedTheme === "dark" ? "#CACFD8" : "#2B303B"} width="16" height="16" />
           <label
             htmlFor="last-edited"
-            className="text-custom-neutral-700 dark:text-custom-neutral-300 inter font-normal text-sm"
+            className="text-custom-neutral-700 dark:text-custom-neutral-300  font-normal text-sm"
           >
             Last edited
           </label>
@@ -143,7 +143,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
           type="text"
           id="last-edited"
           name="last-edited"
-          className="w-full text-custom-neutral-950 dark:text-custom-neutral-300 inter font-normal text-sm rounded-sm"
+          className="w-full text-custom-neutral-950 dark:text-custom-neutral-300  font-normal text-sm rounded-sm"
           placeholder="Not yet saved"
           defaultValue={new Date(note.updatedAt).toLocaleDateString("en-GB", {
             day: "numeric",
@@ -159,7 +159,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
       <div className="flex-grow flex overflow-hidden">
         <textarea
           name="content"
-          className="mt-4 w-full resize-none text-custom-neutral-700 dark:text-custom-neutral-100 inter font-normal text-sm focus:outline-none"
+          className="mt-4 w-full resize-none text-custom-neutral-700 dark:text-custom-neutral-100  font-normal text-sm focus:outline-none"
           placeholder="Start typing your note here..."
           defaultValue={note.content || ""}
         ></textarea>
@@ -185,7 +185,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
               : "bg-custom-neutral-100 dark:bg-custom-neutral-800 cursor-pointer"
           )}
         >
-          <h5 className="inter font-medium text-sm text-custom-neutral-600 dark:text-custom-neutral-400">
+          <h5 className=" font-medium text-sm text-custom-neutral-600 dark:text-custom-neutral-400">
             {mutation.isPending ? (
               <span className="mr-2 inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
             ) : (
