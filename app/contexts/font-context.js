@@ -5,13 +5,20 @@ import { createContext, useContext, useEffect, useState } from "react";
 const FontContext = createContext();
 
 export function FontProvider({ children }) {
-  const [selectedFont, setSelectedFont] = useState("monospace");
+  const [selectedFont, setSelectedFont] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("font-preference") || "inter";
+    }
+
+    return "inter";
+  });
 
   useEffect(() => {
-    document.body.classList.remove('inter', 'serif', 'monospace');
-
+    document.body.classList.remove("inter", "serif", "monospace");
     document.body.classList.add(selectedFont);
-  }, [selectedFont])
+
+    localStorage.setItem("font-preference", selectedFont);
+  }, [selectedFont]);
 
   return (
     <FontContext.Provider value={{ selectedFont, setSelectedFont }}>

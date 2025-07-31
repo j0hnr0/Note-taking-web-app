@@ -17,7 +17,7 @@ export default function Input({ label, name, ref, error, ...props }) {
     <>
       <label
         htmlFor={name}
-        className="mt-6 text-custom-neutral-950  font-medium text-sm"
+        className="mt-6 text-custom-neutral-950 dark:text-white  font-medium text-sm"
       >
         {label}
       </label>
@@ -26,7 +26,7 @@ export default function Input({ label, name, ref, error, ...props }) {
         className={clsx(
           `relative mt-1.5 w-full max-w-[528px] rounded-lg border-[1px]`,
           {
-            "border-custom-neutral-300": !error,
+            "border-custom-neutral-300 dark:border-custom-neutral-600": !error,
             "border-red-500": error,
           }
         )}
