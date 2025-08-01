@@ -31,14 +31,14 @@ export default function ChangePasswordOptions() {
 
       <Input
         label="Old Password"
-        name="old-password"
+        name="oldPassword"
         error={errors.oldPassword?.message}
         {...register("oldPassword", { required: "Password is required." })}
       />
 
       <Input
         label="New Password"
-        name="new-password"
+        name="newPassword"
         error={errors.newPassword?.message}
         {...register("newPassword", {
           required: "New password is required.",
@@ -65,7 +65,7 @@ export default function ChangePasswordOptions() {
 
       <Input
         label="Confirm New Password"
-        name="confirm-new-password"
+        name="confirmNewPassword"
         error={errors.confirmNewPassword?.message}
         {...register("confirmNewPassword", {
           required: "Please confirm your password",

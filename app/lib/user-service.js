@@ -67,7 +67,7 @@ export async function deleteUser(id) {
   });
 }
 
-export async function updatePassword(userId, oldPassword, newPassword) {
+export async function updatePassword({ userId, oldPassword, newPassword }) {
   const user = await prisma.user.findUnique({
     where: {
       id: userId,
@@ -82,7 +82,7 @@ export async function updatePassword(userId, oldPassword, newPassword) {
     throw new Error("User not found");
   }
 
-  const isPasswordValid = await compare(oldPassword, newPassword);
+  const isPasswordValid = await compare(oldPassword, user.password);
 
   if (!isPasswordValid) {
     throw new Error("Invalid old password");
