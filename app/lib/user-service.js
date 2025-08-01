@@ -66,3 +66,38 @@ export async function deleteUser(id) {
     where: { id },
   });
 }
+
+export async function updatePassword(userId, oldPassword, newPassword) {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      id: true,
+      password: true,
+    },
+  });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const isPasswordValid = await compare(oldPassword, newPassword);
+
+  if (!isPasswordValid) {
+    throw new Error("Invalid old password");
+  }
+
+  const hashedNewPassword = await hash(newPassword, 12);
+
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      password: hashedNewPassword,
+    },
+  });
+
+  return { success: true, message: "Password updated successfully" };
+}
