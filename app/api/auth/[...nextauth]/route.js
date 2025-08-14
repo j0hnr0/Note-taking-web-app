@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google"; // Add this import
 import { validateCredentials } from "@/app/lib/user-service";
 
 export const authOptions = {
@@ -28,20 +29,53 @@ export const authOptions = {
           return null;
         }
       }
+    }),
+    // Add Google Provider here
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     })
   ],
   
   session: {
-    strategy: "jwt", // Use JWT for credentials provider
+    strategy: "jwt", // Use JWT for both providers
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   
   callbacks: {
-    async jwt({ token, user }) {
+    async signIn({ user, account, profile, email, credentials }) {
+      // Optional: Handle Google sign-in to save user to your database
+      if (account?.provider === "google") {
+        // You might want to save the Google user to your database here
+        // For example:
+        // const dbUser = await createOrUpdateGoogleUser({
+        //   email: user.email,
+        //   name: user.name,
+        //   image: user.image,
+        //   googleId: account.providerAccountId
+        // });
+        // return !!dbUser;
+      }
+      return true; // Allow sign in
+    },
+    
+    async jwt({ token, user, account, profile }) {
       // Initial sign in
       if (user) {
         token.id = user.id;
         token.email = user.email;
+        
+        // Store provider info
+        if (account) {
+          token.provider = account.provider;
+          // For Google users, you might not have user.id from your DB
+          // You can use the Google account ID or email as identifier
+          if (account.provider === "google") {
+            token.id = user.id || account.providerAccountId;
+            token.name = user.name;
+            token.image = user.image;
+          }
+        }
       }
       return token;
     },
@@ -51,6 +85,13 @@ export const authOptions = {
       if (session.user) {
         session.user.id = token.id;
         session.user.email = token.email;
+        session.user.provider = token.provider;
+        
+        // Include additional info for Google users
+        if (token.provider === "google") {
+          session.user.name = token.name;
+          session.user.image = token.image;
+        }
       }
       return session;
     },
