@@ -101,3 +101,23 @@ export async function updatePassword({ userId, oldPassword, newPassword }) {
 
   return { success: true, message: "Password updated successfully" };
 }
+
+export async function createGoogleUser({ email, googleId }) {
+  const existingUser = await prisma.user.findUnique({
+    where: { googleId }
+  });
+
+  if (existingUser) {
+    return existingUser;
+  }
+
+  const user = await prisma.user.create({
+    data: {
+      email, 
+      googleId,
+      provider: "google"
+    }
+  });
+
+  return user;
+}
