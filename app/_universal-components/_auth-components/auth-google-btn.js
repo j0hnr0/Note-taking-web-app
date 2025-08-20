@@ -1,7 +1,12 @@
+"use client";
+
+import { signIn } from "next-auth/react";
+
 export default function AuthGoogleBtn() {
   return (
     <button
       type="button"
+      onClick={() => signIn('google', { callbackUrl: '/all-notes' })}
       className="mt-4 w-full rounded-xl py-3 flex justify-center items-center gap-4 border-[1px] border-custom-neutral-300 cursor-pointer"
     >
       <svg
