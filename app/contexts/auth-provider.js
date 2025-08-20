@@ -17,6 +17,7 @@ export function AuthProvider({ children }) {
       setUser({
         id: session.user.id,
         email: session.user.email,
+        provider: session.user.provider
       });
     } else {
       setUser(null);
