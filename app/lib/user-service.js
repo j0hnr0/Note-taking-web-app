@@ -1,5 +1,7 @@
 import { hash, compare } from "bcryptjs";
 import prisma from "./prisma";
+import crypto from "crypto";
+import { sendPasswordResetEmail } from "./email";
 
 export async function findUserByEmail(email) {
   return prisma.user.findUnique({
@@ -104,7 +106,7 @@ export async function updatePassword({ userId, oldPassword, newPassword }) {
 
 export async function createGoogleUser({ email, googleId }) {
   const existingUser = await prisma.user.findUnique({
-    where: { googleId }
+    where: { googleId },
   });
 
   if (existingUser) {
@@ -113,11 +115,40 @@ export async function createGoogleUser({ email, googleId }) {
 
   const user = await prisma.user.create({
     data: {
-      email, 
+      email,
       googleId,
-      provider: "google"
-    }
+      provider: "google",
+    },
   });
 
   return user;
+}
+
+export async function sendResetPasswordLink({ email }) {
+  const user = await prisma.user.findUnique({
+    where: { email: email },
+  });
+
+  // Don't reveal if user exists or not (security)
+  if (!user) {
+    return true;
+  }
+
+  const resetToken = crypto.randomBytes(32).toString('hex');
+  const resetTokenExpiry = new Date(Date.now() + 3600000);
+
+  await prisma.user.update({
+    where: {id: user.id},
+    data: {
+      resetToken: resetToken,
+      resetTokenExpiry: resetTokenExpiry
+    }
+  });
+
+  const resetLink = `${process.env.NEXTAUTH_URL}/reset-password?token=${resetToken}`;
+
+  await sendPasswordResetEmail(user.email, resetLink);
+
+  return true;
+
 }
