@@ -20,6 +20,8 @@ model User {
   password      String?
   googleId      String?   @unique
   provider      String    @default("credentials")
+  resetToken    String?
+  resetTokenExpiry  DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   notes         Note[]
