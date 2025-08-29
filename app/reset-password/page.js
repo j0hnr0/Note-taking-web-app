@@ -6,10 +6,9 @@ import AuthButton from "../_universal-components/_auth-components/auth-button";
 import AuthHeader from "../_universal-components/_auth-components/auth-header";
 import AuthInput from "../_universal-components/_auth-components/auth-input";
 import AuthPasswordInfo from "../_universal-components/_auth-components/auth-password-info";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import { useRouter } from "next/router";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function ResetPassword() {
   const {
@@ -57,6 +56,7 @@ export default function ResetPassword() {
 
   return (
     <AuthBackground>
+      <Toaster position="bottom-right" />
       <AuthHeader
         title="Reset Your Password"
         subTitle="Choose a new password to secure your account."
