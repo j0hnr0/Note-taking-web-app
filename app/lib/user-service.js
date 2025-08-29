@@ -134,15 +134,15 @@ export async function sendResetPasswordLink({ email }) {
     return true;
   }
 
-  const resetToken = crypto.randomBytes(32).toString('hex');
+  const resetToken = crypto.randomBytes(32).toString("hex");
   const resetTokenExpiry = new Date(Date.now() + 3600000);
 
   await prisma.user.update({
-    where: {id: user.id},
+    where: { id: user.id },
     data: {
       resetToken: resetToken,
-      resetTokenExpiry: resetTokenExpiry
-    }
+      resetTokenExpiry: resetTokenExpiry,
+    },
   });
 
   const resetLink = `${process.env.NEXTAUTH_URL}/reset-password?token=${resetToken}`;
@@ -150,5 +150,32 @@ export async function sendResetPasswordLink({ email }) {
   await sendPasswordResetEmail(user.email, resetLink);
 
   return true;
+}
 
+export async function resetPasswordThroughLink({ token, newPassword }) {
+  const user = await prisma.user.findFirst({
+    where: {
+      resetToken: token,
+      resetTokenExpiry: {
+        gt: new Date(), // Check if not expired
+      },
+    },
+  });
+
+  if (!user) {
+    throw new Error("Invalid or expired token");
+  }
+
+  const hashedPassword = await hash(newPassword, 12);
+
+  await prisma.user.update({
+    where: { id: user.id },
+    data: {
+      password: hashedPassword,
+      resetToken: null,
+      resetTokenExpiry: null,
+    },
+  });
+
+  return true;
 }
