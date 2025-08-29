@@ -6,6 +6,10 @@ import AuthButton from "../_universal-components/_auth-components/auth-button";
 import AuthHeader from "../_universal-components/_auth-components/auth-header";
 import AuthInput from "../_universal-components/_auth-components/auth-input";
 import AuthPasswordInfo from "../_universal-components/_auth-components/auth-password-info";
+import { useSearchParams } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 export default function ResetPassword() {
   const {
@@ -16,9 +20,39 @@ export default function ResetPassword() {
   } = useForm();
 
   const password = watch("password", "");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
 
-  function handleForm() {
-    console.log("kiki do you love me");
+  const mutation = useMutation({
+    mutationFn: async (formData) => {
+      const response = await fetch("/api/auth/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: token, newPassword: formData.password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Cannot reset password for the meantime."
+        );
+      }
+
+      return data;
+    },
+    onSuccess: (data) => {
+      toast.success(data.message);
+      router.push("/");
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
+  function handleForm(formData) {
+    mutation.mutate(formData);
   }
 
   return (
@@ -68,7 +102,7 @@ export default function ResetPassword() {
               value === password || "The passwords do not match",
           })}
         />
-        <AuthButton btnText="Reset Password" />
+        <AuthButton btnText="Reset Password" isLoading={mutation.isPending} />
       </form>
     </AuthBackground>
   );
