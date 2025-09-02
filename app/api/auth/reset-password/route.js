@@ -19,6 +19,13 @@ export async function POST(request) {
       );
     }
 
+    if (error.message === "Cannot reset password for this account type") {
+      return NextResponse.json(
+        { message: "Cannot reset password for this account type" },
+        { status: 400 }
+      );
+    }
+
     return NextResponse.json(
       { message: "Something went wrong" },
       { status: 500 }

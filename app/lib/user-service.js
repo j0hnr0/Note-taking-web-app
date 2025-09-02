@@ -130,7 +130,7 @@ export async function sendResetPasswordLink({ email }) {
   });
 
   // Don't reveal if user exists or not (security)
-  if (!user) {
+  if (!user || user.provider === "google") {
     return true;
   }
 
@@ -164,6 +164,11 @@ export async function resetPasswordThroughLink({ token, newPassword }) {
 
   if (!user) {
     throw new Error("Invalid or expired token");
+  }
+
+  // EXTRA CHECK - Prevent Google users from setting password
+  if (user.provider === "google") {
+    throw new Error("Cannot reset password for this account type");
   }
 
   const hashedPassword = await hash(newPassword, 12);

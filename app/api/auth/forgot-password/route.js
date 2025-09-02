@@ -5,7 +5,7 @@ export async function POST(request) {
   try {
     const { email } = await request.json();
 
-    const user = await sendResetPasswordLink({ email });
+    await sendResetPasswordLink({ email });
 
     return NextResponse.json(
       { message: "If an account exist, we sent an email" },
