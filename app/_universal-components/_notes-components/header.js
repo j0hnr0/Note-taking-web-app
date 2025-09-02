@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SettingSvg from "../_svg-components/setting-svg";
 import Search from "./search";
+import { Suspense } from "react";
 
 export default function Header({ title }) {
   return (
@@ -9,7 +10,10 @@ export default function Header({ title }) {
         {title}
       </h1>
       <div className="flex justify-end items-center gap-6 w-2/4">
-        <Search />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Search />
+        </Suspense>
+
         <Link href="/settings/color-theme">
           <SettingSvg fill="#717784" />
         </Link>
