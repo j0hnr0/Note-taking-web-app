@@ -1,2 +1,1 @@
-// NOTE: Next task is to check what the email's provider is, in sending reset link. If it is google prevent sending 
-// otherwise send it.
+// NOTE: Next task is to put this into production live.
