@@ -3,7 +3,8 @@
 import NotesList from "./notes-list";
 import CreateNoteForm from "./create-note-form";
 import { useSelector } from "react-redux";
-import { Suspense } from "react";
+
+export const dynamic = "force-dynamic";
 
 export default function MainContent({
   isInArchivedNotes,
@@ -14,13 +15,11 @@ export default function MainContent({
 
   return (
     <div className="flex justify-start items-start h-full">
-      <Suspense fallback={<div>Loading...</div>}>
-        <NotesList
-          isInArchivedNotes={isInArchivedNotes}
-          isInTagNotes={isInTagNotes}
-          tagText={tagText}
-        />
-      </Suspense>
+      <NotesList
+        isInArchivedNotes={isInArchivedNotes}
+        isInTagNotes={isInTagNotes}
+        tagText={tagText}
+      />
 
       {isOpen && <CreateNoteForm isInArchivedNotes={isInArchivedNotes} />}
     </div>

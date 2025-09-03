@@ -7,6 +7,8 @@ import SideNav from "@/app/_universal-components/_notes-components/side-nav";
 import Options from "../_components/options";
 import ColorOptions from "./_components/color-options";
 
+export const dynamic = 'force-dynamic'
+
 export default function ColorTheme() {
   return (
     <div

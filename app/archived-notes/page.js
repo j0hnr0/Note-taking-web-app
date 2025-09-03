@@ -6,6 +6,8 @@ import MHeader from "../_universal-components/_notes-components/mobile/m-header"
 import MNotesList from "../_universal-components/_notes-components/mobile/m-notes-list";
 import SideNav from "../_universal-components/_notes-components/side-nav";
 
+export const dynamic = 'force-dynamic'
+
 export default function ArchivedNotes() {
   return (
     <div
