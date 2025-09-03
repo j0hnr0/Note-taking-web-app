@@ -7,6 +7,7 @@ import SideNav from "@/app/_universal-components/_notes-components/side-nav";
 import Options from "../_components/options";
 import ChangePasswordOptions from "./_components/change-password-options";
 
+export const dynamic = 'force-dynamic'
 
 export default function ChangePassword() {
   return (

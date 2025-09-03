@@ -13,6 +13,9 @@ export default withAuth({
 export const config = {
   matcher: [
     // Protect these paths
-    "/all-notes",
+    "/all-notes/:path*",
+    "/archived-notes/:path*",
+    "/tags/:path*",
+    "/settings/:path*",
   ],
 };
