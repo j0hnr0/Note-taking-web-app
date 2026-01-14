@@ -7,7 +7,8 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const query = searchParams.get("query") || "";
-    const isArchive = searchParams.get("archive") === "true";
+    const archiveParam = searchParams.get("archive");
+    const isArchive = archiveParam === null ? undefined : archiveParam === "true";
 
     const session = await getServerSession(authOptions);
 

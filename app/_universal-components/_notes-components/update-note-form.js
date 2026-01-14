@@ -99,7 +99,7 @@ export default function UpdateNoteForm({ id, isInArchivedNotes }) {
     <form
       id="create-note-form"
       onSubmit={handleSubmit}
-      className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] max-custom-md:max-w-full border-r-[1px] border-r-custom-neutral-200 dark:border-r-custom-neutral-800"
+      className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] max-custom-md:max-w-full border-r-[1px] border-r-custom-neutral-200 dark:border-r-custom-neutral-800 max-custom-sm:order-1 animate-slide-fade-in"
     >
       <input
         type="text"

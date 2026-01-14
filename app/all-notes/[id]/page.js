@@ -18,7 +18,6 @@ export default async function NotePage({ params }) {
       {/* Mobile-only UI elements */}
       <MHeader />
       <MFooterMenu />
-      <MFloatingPlus />
 
       {/* Desktop sidebar - hidden on mobile */}
       <SideNav />
@@ -26,7 +25,7 @@ export default async function NotePage({ params }) {
       {/* Main content - visible on both mobile and desktop */}
       <div className="w-full h-full flex flex-col">
         <Header title="All Notes" />
-        <div className="flex justify-start items-start h-full">
+        <div className="flex justify-start items-start h-full max-custom-sm:flex-col">
           <NotesList />
           <UpdateNoteForm id={id} />
           <NoteSettings id={id} />

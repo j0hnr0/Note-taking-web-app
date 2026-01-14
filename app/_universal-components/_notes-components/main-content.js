@@ -4,8 +4,6 @@ import NotesList from "./notes-list";
 import CreateNoteForm from "./create-note-form";
 import { useSelector } from "react-redux";
 
-export const dynamic = "force-dynamic";
-
 export default function MainContent({
   isInArchivedNotes,
   isInTagNotes,
@@ -14,7 +12,7 @@ export default function MainContent({
   const isOpen = useSelector((state) => state.notes.isNoteEditorOpen);
 
   return (
-    <div className="flex justify-start items-start h-full">
+    <div className="flex justify-start items-start h-full max-custom-sm:flex-col">
       <NotesList
         isInArchivedNotes={isInArchivedNotes}
         isInTagNotes={isInTagNotes}

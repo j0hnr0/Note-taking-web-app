@@ -7,7 +7,7 @@ import MNavMenu from "./m-nav-menu";
 
 export default function MFooterMenu() {
   return (
-    <footer className="max-custom-lg:block hidden w-full py-3 px-8 shadow-[0_-4px_6px_0_rgba(240,240,240,0.6)] fixed bottom-0 left-0 z-40 border-t-[1px] border-t-custom-neutral-200
+    <footer className="max-custom-lg:block hidden w-full py-3 px-8 shadow-[0_-4px_6px_0_rgba(240,240,240,0.6)] fixed bottom-0 left-0 z-40 border-t-[1px] border-t-custom-neutral-200 bg-white dark:bg-black dark:border-t-custom-neutral-800
     max-custom-sm:px-4">
       <nav>
         <ul className="flex justify-between items-center">

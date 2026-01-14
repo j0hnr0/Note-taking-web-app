@@ -12,7 +12,7 @@ export default function MNavMenu({ label, svg: Svg, href }) {
       <Link href={href}>
         <div
           className={clsx("py-1 rounded-sm flex flex-col items-center gap-1", {
-            "bg-custom-blue-50": pathname === href,
+            "bg-custom-blue-50 dark:bg-custom-neutral-800": pathname === href,
           })}
         >
           <Svg fill={pathname === href ? "#335CFF" : "#525866"} width="24" height="24" />

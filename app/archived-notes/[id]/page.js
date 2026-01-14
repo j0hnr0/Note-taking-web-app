@@ -18,7 +18,6 @@ export default async function ArchivePage({ params }) {
       {/* Mobile-only UI elements */}
       <MHeader />
       <MFooterMenu />
-      <MFloatingPlus />
 
       {/* Desktop sidebar - hidden on mobile */}
       <SideNav />
@@ -26,7 +25,7 @@ export default async function ArchivePage({ params }) {
       {/* Main content - visible on both mobile and desktop */}
       <div className="w-full h-full flex flex-col">
         <Header title="Archived Notes" />
-        <div className="flex justify-start items-start h-full">
+        <div className="flex justify-start items-start h-full max-custom-sm:flex-col">
           <NotesList isInArchivedNotes={true} />
           <UpdateNoteForm id={id} isInArchivedNotes={true} />
           <NoteSettings id={id} isInArchivedNotes={true} />

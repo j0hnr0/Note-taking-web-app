@@ -11,7 +11,9 @@ export default function Header({ title }) {
         {title}
       </h1>
       <div className="flex justify-end items-center gap-6 w-2/4 max-custom-md:w-auto">
-        <Search />
+        <div className="max-custom-lg:hidden block">
+          <Search />
+        </div>
 
         <Link href="/settings/color-theme">
           <SettingSvg fill="#717784" />

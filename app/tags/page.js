@@ -3,7 +3,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import MFooterMenu from "../_universal-components/_notes-components/mobile/m-footer-menu";
-import MFloatingPlus from "../_universal-components/_notes-components/mobile/m-floating-plus";
 import MHeader from "../_universal-components/_notes-components/mobile/m-header";
 import Header from "../_universal-components/_notes-components/header";
 import SideNav from "../_universal-components/_notes-components/side-nav";
@@ -40,7 +39,6 @@ export default function TagsPage() {
       {/* Mobile components */}
       <MHeader />
       <MFooterMenu />
-      <MFloatingPlus />
 
       {/* Desktop components */}
       <SideNav />
@@ -78,9 +76,9 @@ export default function TagsPage() {
 
         {tags && tags.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {tags.map((tagData) => (
+            {tags.map((tagData, index) => (
               <button
-                key={tagData.tag}
+                key={`${tagData.tag}-${index}`}
                 onClick={() => handleTagClick(tagData.tag)}
                 className="p-4 rounded-lg border-[1px] border-custom-neutral-200 dark:border-custom-neutral-800
                          hover:bg-custom-neutral-100 dark:hover:bg-custom-neutral-800

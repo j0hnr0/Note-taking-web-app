@@ -34,7 +34,7 @@ export default function ColorOptions() {
   return (
     <form
       onSubmit={handleTheme}
-      className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] max-custom-md:max-w-full"
+      className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] max-custom-md:max-w-full max-custom-sm:mb-16"
     >
       <TitleSubtitle title="Color Theme" subtitle="Choose your color theme:" />
 

@@ -51,7 +51,7 @@ export default function NotesList({
   });
 
   return (
-    <div className="w-full max-w-[290px] max-custom-md:max-w-full py-5 px-8 border-r-[1px] border-r-custom-neutral-200 dark:border-r-custom-neutral-800 h-full max-custom-lg:px-4 max-custom-lg:py-4 max-custom-lg:border-r-0 max-custom-lg:pb-24">
+    <div className="w-full max-w-[290px] max-custom-md:max-w-full py-5 px-8 border-r-[1px] border-r-custom-neutral-200 dark:border-r-custom-neutral-800 h-full max-custom-lg:px-4 max-custom-lg:py-4 max-custom-lg:border-r-0 max-custom-lg:pb-24 max-custom-sm:order-3">
       <Button
         type="button"
         btnText="+ Create New Note"

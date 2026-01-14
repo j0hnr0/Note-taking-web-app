@@ -1,6 +1,5 @@
 import Header from "../_universal-components/_notes-components/header";
 import MainContent from "../_universal-components/_notes-components/main-content";
-import MFloatingPlus from "../_universal-components/_notes-components/mobile/m-floating-plus";
 import MFooterMenu from "../_universal-components/_notes-components/mobile/m-footer-menu";
 import MHeader from "../_universal-components/_notes-components/mobile/m-header";
 import SideNav from "../_universal-components/_notes-components/side-nav";
@@ -16,7 +15,6 @@ export default function AllNotes() {
       {/* Mobile-only UI elements */}
       <MHeader />
       <MFooterMenu />
-      <MFloatingPlus />
 
       {/* Desktop sidebar - hidden on mobile */}
       <SideNav />

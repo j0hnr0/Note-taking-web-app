@@ -4,14 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import MFooterMenu from "../_universal-components/_notes-components/mobile/m-footer-menu";
-import MFloatingPlus from "../_universal-components/_notes-components/mobile/m-floating-plus";
 import MHeader from "../_universal-components/_notes-components/mobile/m-header";
 import Header from "../_universal-components/_notes-components/header";
 import SideNav from "../_universal-components/_notes-components/side-nav";
 import NoteCard from "../_universal-components/_notes-components/note-card";
 import { LoadingSpinner } from "../_universal-components/_auth-components/auth-spinner";
 import SearchSvg from "../_universal-components/_svg-components/search-svg";
-import CloseSvg from "../_universal-components/_svg-components/close-svg";
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -42,7 +40,7 @@ export default function SearchPage() {
       if (!debouncedQuery) return null;
 
       const response = await fetch(
-        `/api/note/search?query=${encodeURIComponent(debouncedQuery)}&archive=false`
+        `/api/note/search?query=${encodeURIComponent(debouncedQuery)}`
       );
       const data = await response.json();
 
@@ -60,7 +58,6 @@ export default function SearchPage() {
       {/* Mobile components */}
       <MHeader />
       <MFooterMenu />
-      <MFloatingPlus />
 
       {/* Desktop components */}
       <SideNav />
@@ -91,10 +88,10 @@ export default function SearchPage() {
             {searchQuery && (
               <button
                 onClick={handleClearSearch}
-                className="p-1 hover:bg-custom-neutral-100 dark:hover:bg-custom-neutral-800 rounded transition-colors"
+                className="px-2 py-1 hover:bg-custom-neutral-100 dark:hover:bg-custom-neutral-800 rounded transition-colors text-custom-neutral-600 dark:text-custom-neutral-400 text-xl font-light"
                 aria-label="Clear search"
               >
-                <CloseSvg fill="#717784" width="16" height="16" />
+                ×
               </button>
             )}
           </div>
@@ -104,7 +101,6 @@ export default function SearchPage() {
         <div className="max-w-4xl">
           {!debouncedQuery && (
             <div className="text-center py-12">
-              <SearchSvg fill="#717784" width="48" height="48" className="mx-auto mb-4" />
               <p className="font-normal text-sm text-custom-neutral-700 dark:text-custom-neutral-300">
                 Start typing to search your notes by title, content, or tags
               </p>
@@ -126,7 +122,7 @@ export default function SearchPage() {
           {notes && notes.length === 0 && debouncedQuery && (
             <div className="text-center py-12">
               <p className="font-normal text-sm text-custom-neutral-700 dark:text-custom-neutral-300">
-                No notes found matching "{debouncedQuery}"
+                No notes found matching &quot;{debouncedQuery}&quot;
               </p>
             </div>
           )}
