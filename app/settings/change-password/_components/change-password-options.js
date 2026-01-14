@@ -52,7 +52,7 @@ export default function ChangePasswordOptions() {
       <Toaster position="bottom-right" />
       <form
         onSubmit={handleSubmit(handleForm)}
-        className="flex flex-col h-full py-5 px-6 w-full max-w-[562px]"
+        className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] max-custom-md:max-w-full"
         noValidate
       >
         <small className="font-semibold text-base text-custom-neutral-950 dark:text-white">

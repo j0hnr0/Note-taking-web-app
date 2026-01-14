@@ -12,10 +12,10 @@ export default function MFooterMenu() {
       <nav>
         <ul className="flex justify-between items-center">
           <MNavMenu label="Home" svg={HomeSvg} href="/all-notes" />
-          <MNavMenu label="Search" svg={SearchSvg} href="/" />
-          <MNavMenu label="Archived" svg={ArchiveSvg} href="/" />
-          <MNavMenu label="Tags" svg={TagSvg} href="/" />
-          <MNavMenu label="Settings" svg={SettingSvg} href="/" />
+          <MNavMenu label="Search" svg={SearchSvg} href="/search" />
+          <MNavMenu label="Archived" svg={ArchiveSvg} href="/archived-notes" />
+          <MNavMenu label="Tags" svg={TagSvg} href="/tags" />
+          <MNavMenu label="Settings" svg={SettingSvg} href="/settings/color-theme" />
         </ul>
       </nav>
     </footer>

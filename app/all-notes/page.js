@@ -3,7 +3,6 @@ import MainContent from "../_universal-components/_notes-components/main-content
 import MFloatingPlus from "../_universal-components/_notes-components/mobile/m-floating-plus";
 import MFooterMenu from "../_universal-components/_notes-components/mobile/m-footer-menu";
 import MHeader from "../_universal-components/_notes-components/mobile/m-header";
-import MNotesList from "../_universal-components/_notes-components/mobile/m-notes-list";
 import SideNav from "../_universal-components/_notes-components/side-nav";
 
 export const dynamic = 'force-dynamic'
@@ -14,23 +13,19 @@ export default function AllNotes() {
       className="flex items-start h-screen
     max-custom-lg:block max-custom-lg:h-auto"
     >
-      {/* This will only display when screen size is < 1024px */}
+      {/* Mobile-only UI elements */}
       <MHeader />
-      <MNotesList />
       <MFooterMenu />
       <MFloatingPlus />
-      {/* This will only display when screen size is < 1024px */}
 
-      {/* This will only display when screen size is > 1024px*/}
+      {/* Desktop sidebar - hidden on mobile */}
       <SideNav />
-      <div
-        className="w-full h-full flex flex-col
-      max-custom-lg:hidden"
-      >
+
+      {/* Main content - visible on both mobile and desktop */}
+      <div className="w-full h-full flex flex-col">
         <Header title="All Notes" />
         <MainContent />
       </div>
-      {/* This will only display when screen size is > 1024px*/}
     </div>
   );
 }

@@ -5,7 +5,7 @@ import NoteSettingsBtn from "./note-settings-btn";
 
 export default function NoteSettings({ id, isInArchivedNotes }) {
   return (
-    <div className="w-full max-w-[290px] p-5 flex flex-col gap-3">
+    <div className="w-full max-w-[290px] max-custom-md:max-w-full p-5 flex flex-col gap-3">
       <NoteSettingsBtn
         id={id}
         svg={isInArchivedNotes ? RestoreSvg : ArchiveSvg}

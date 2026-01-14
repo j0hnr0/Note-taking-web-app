@@ -23,7 +23,7 @@ export default function Search() {
   }, 300);
 
   return (
-    <div className="py-3 px-4 flex justify-start items-center gap-2 border-[1px] border-custom-neutral-200 dark:border-custom-neutral-600 rounded-lg w-full max-w-[300px]">
+    <div className="py-3 px-4 flex justify-start items-center gap-2 border-[1px] border-custom-neutral-200 dark:border-custom-neutral-600 rounded-lg w-full max-w-[300px] max-custom-md:max-w-full">
       <SearchSvg fill="#717784" />
       <input
         type="text"

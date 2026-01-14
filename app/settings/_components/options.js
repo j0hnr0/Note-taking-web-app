@@ -12,7 +12,7 @@ export default function Options() {
   const { user } = useAuth();
 
   return (
-    <div className="w-full max-w-[290px] py-5 px-8 border-r-[1px] border-r-custom-neutral-200 dark:border-r-custom-neutral-800 h-full">
+    <div className="w-full max-w-[290px] max-custom-md:max-w-full py-5 px-8 border-r-[1px] border-r-custom-neutral-200 dark:border-r-custom-neutral-800 h-full">
       <ul>
         <NavMenu
           svg={ColorThemeSvg}

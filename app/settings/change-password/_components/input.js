@@ -24,7 +24,7 @@ export default function Input({ label, name, ref, error, ...props }) {
 
       <div
         className={clsx(
-          `relative mt-1.5 w-full max-w-[528px] rounded-lg border-[1px]`,
+          `relative mt-1.5 w-full max-w-[528px] max-custom-md:max-w-full rounded-lg border-[1px]`,
           {
             "border-custom-neutral-300 dark:border-custom-neutral-600": !error,
             "border-red-500": error,

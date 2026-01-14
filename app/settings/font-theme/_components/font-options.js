@@ -26,7 +26,7 @@ export default function FontOptions() {
   return (
     <form
       onSubmit={handleFont}
-      className="flex flex-col h-full py-5 px-6 w-full max-w-[562px]"
+      className="flex flex-col h-full py-5 px-6 w-full max-w-[562px] max-custom-md:max-w-full"
     >
       <TitleSubtitle title="Font Theme" subtitle="Choose your font theme:" />
 

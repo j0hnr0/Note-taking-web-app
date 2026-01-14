@@ -22,7 +22,7 @@ export default function Theme({
   if (!mounted) return null;
 
   return (
-    <label className="mt-4 w-full max-w-[528px] rounded-xl border-[1px] border-custom-neutral-200 dark:border-custom-neutral-800 p-4 flex justify-between items-center cursor-pointer has-[:checked]:bg-custom-neutral-100 has-[:checked]:dark:bg-custom-neutral-800 has-[:checked]:dark:border-custom-neutral-700">
+    <label className="mt-4 w-full max-w-[528px] max-custom-md:max-w-full rounded-xl border-[1px] border-custom-neutral-200 dark:border-custom-neutral-800 p-4 flex justify-between items-center cursor-pointer has-[:checked]:bg-custom-neutral-100 has-[:checked]:dark:bg-custom-neutral-800 has-[:checked]:dark:border-custom-neutral-700">
       <input
         type="radio"
         name={name}

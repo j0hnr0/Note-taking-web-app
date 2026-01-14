@@ -10,7 +10,7 @@ export default function Header({ title }) {
       <h1 className="font-bold text-2xl text-custom-neutral-950 dark:text-white">
         {title}
       </h1>
-      <div className="flex justify-end items-center gap-6 w-2/4">
+      <div className="flex justify-end items-center gap-6 w-2/4 max-custom-md:w-auto">
         <Search />
 
         <Link href="/settings/color-theme">
