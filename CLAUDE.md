@@ -53,6 +53,7 @@ npx prisma migrate reset
   /api                      # Backend API routes (REST endpoints)
   /all-notes               # Main notes page + Redux store
   /archived-notes          # Archive management pages
+  /search                  # Search results page
   /contexts                # React Context providers (auth, fonts)
   /provider                # Provider wrappers (Redux, Query, NextAuth, themes)
   /lib                     # Service layer (business logic)
@@ -63,9 +64,9 @@ npx prisma migrate reset
   /_universal-components   # Shared UI components
   /tags                    # Tag-based filtering pages
   /settings                # User preferences
-  middleware.js            # Route protection (session validation)
 /prisma
   schema.prisma            # Database models (User, Note)
+middleware.js              # Route protection (at project root)
 ```
 
 ### State Management Strategy
@@ -118,15 +119,30 @@ const result = await serviceFunction({ userId, ...data });
 ```
 
 Key endpoints:
+
+**Note Management:**
 - `/api/note/create` - POST new note
 - `/api/note/fetch` - GET all user notes
+- `/api/note/fetch-one-note?id=<noteId>` - GET single note
 - `/api/note/update?id=<noteId>` - PATCH note
-- `/api/note/delete` - DELETE note
+- `/api/note/delete?id=<noteId>` - DELETE note
 - `/api/note/search?query=<q>&archive=<bool>` - GET search results
-- `/api/note/archive-note` - POST archive
-- `/api/note/restore-note` - POST restore
+- `/api/note/archive-note` - PATCH archive note
+- `/api/note/restore-note` - PATCH restore note
+- `/api/note/create-archive-note` - POST create archived note
+- `/api/note/get-archive-notes` - GET all archived notes
 - `/api/note/get-tags` - GET unique tags
-- `/api/note/get-tag-note` - GET notes by tag
+- `/api/note/get-tag-note?tag=<tag>&query=<q>` - GET notes by tag (optional search)
+
+**Authentication:**
+- `/api/auth/[...nextauth]` - NextAuth handlers
+- `/api/auth/register` - POST new user registration
+- `/api/auth/change-password` - PATCH update password
+- `/api/auth/forgot-password` - POST initiate password reset
+- `/api/auth/reset-password` - POST complete password reset
+
+**User:**
+- `/api/user/profile` - GET/PUT user profile
 
 ### Service Layer Architecture
 
@@ -189,7 +205,7 @@ EMAIL_PASSWORD=<Gmail app password>
 
 ### Overall Status: 100% Responsive ✓
 
-All 13 pages and 40 components are now fully responsive across all breakpoints. The app uses custom breakpoints (1025px, 769px, 476px) for responsive behavior with excellent mobile/desktop component separation patterns.
+All 15 pages and 47 components are now fully responsive across all breakpoints. The app uses custom breakpoints (1025px, 769px, 476px) for responsive behavior with excellent mobile/desktop component separation patterns.
 
 ### Components Improved (2026-01)
 
