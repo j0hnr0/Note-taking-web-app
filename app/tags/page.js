@@ -76,10 +76,10 @@ export default function TagsPage() {
 
         {tags && tags.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {tags.map((tagData, index) => (
+            {tags.map((tag, index) => (
               <button
-                key={`${tagData.tag}-${index}`}
-                onClick={() => handleTagClick(tagData.tag)}
+                key={`${tag}-${index}`}
+                onClick={() => handleTagClick(tag)}
                 className="p-4 rounded-lg border-[1px] border-custom-neutral-200 dark:border-custom-neutral-800
                          hover:bg-custom-neutral-100 dark:hover:bg-custom-neutral-800
                          transition-colors cursor-pointer text-left"
@@ -88,14 +88,9 @@ export default function TagsPage() {
                   <div className="p-2 rounded-lg bg-custom-blue-50 dark:bg-custom-neutral-900">
                     <TagSvg fill="#335CFF" width="20" height="20" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-base text-custom-neutral-950 dark:text-white">
-                      {tagData.tag}
-                    </h3>
-                    <p className="font-normal text-sm text-custom-neutral-600 dark:text-custom-neutral-400">
-                      {tagData.count} {tagData.count === 1 ? "note" : "notes"}
-                    </p>
-                  </div>
+                  <h3 className="font-semibold text-base text-custom-neutral-950 dark:text-white">
+                    {tag}
+                  </h3>
                 </div>
               </button>
             ))}
