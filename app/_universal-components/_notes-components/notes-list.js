@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSelector } from "react-redux";
 import Button from "./button";
 import EmptyMessage from "./empty-message";
@@ -9,11 +10,7 @@ import NoteCard from "./note-card";
 import { LoadingSpinner } from "../_auth-components/auth-spinner";
 import { useSearchParams } from "next/navigation";
 
-export default function NotesList({
-  isInArchivedNotes,
-  isInTagNotes,
-  tagText,
-}) {
+function NotesListContent({ isInArchivedNotes, isInTagNotes, tagText }) {
   const isOpen = useSelector((state) => state.notes.isNoteEditorOpen);
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query") || "";
@@ -113,5 +110,45 @@ export default function NotesList({
         />
       )}
     </div>
+  );
+}
+
+function NotesListFallback({ isInArchivedNotes, isInTagNotes, tagText }) {
+  return (
+    <div className="w-full max-w-[290px] max-custom-md:max-w-full py-5 px-8 border-r-[1px] border-r-custom-neutral-200 dark:border-r-custom-neutral-800 h-full max-custom-lg:px-4 max-custom-lg:py-4 max-custom-lg:border-r-0 max-custom-lg:pb-24 max-custom-sm:order-3">
+      <Button
+        type="button"
+        btnText="+ Create New Note"
+        textColor="text-white"
+        bgColor="bg-custom-blue-500"
+        toggle="open"
+      />
+      <div className="mb-3"></div>
+
+      {isInArchivedNotes && (
+        <p className="mt-4 font-normal text-sm text-custom-neutral-700 dark:text-custom-neutral-200">
+          All your archived notes are stored here. You can restore or delete
+          them anytime.
+        </p>
+      )}
+
+      {isInTagNotes && (
+        <p className="mt-4 font-normal text-sm text-custom-neutral-700 dark:text-white">
+          {`All notes with the "${tagText}" tag are shown here.`}
+        </p>
+      )}
+
+      <div className="mt-12">
+        <LoadingSpinner size="md" color="primary" />
+      </div>
+    </div>
+  );
+}
+
+export default function NotesList(props) {
+  return (
+    <Suspense fallback={<NotesListFallback {...props} />}>
+      <NotesListContent {...props} />
+    </Suspense>
   );
 }
