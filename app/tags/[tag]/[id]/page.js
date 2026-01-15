@@ -1,14 +1,15 @@
 import Header from "@/app/_universal-components/_notes-components/header";
-import MFloatingPlus from "@/app/_universal-components/_notes-components/mobile/m-floating-plus";
 import MFooterMenu from "@/app/_universal-components/_notes-components/mobile/m-footer-menu";
 import MHeader from "@/app/_universal-components/_notes-components/mobile/m-header";
 import NoteSettings from "@/app/_universal-components/_notes-components/note-settings";
 import NotesList from "@/app/_universal-components/_notes-components/notes-list";
 import SideNav from "@/app/_universal-components/_notes-components/side-nav";
 import UpdateNoteForm from "@/app/_universal-components/_notes-components/update-note-form";
+import { getUserNoteById } from "@/app/lib/note-service";
 
 export default async function singleTagPage({ params }) {
   const { tag, id } = await params;
+  const note = await getUserNoteById({ id });
 
   return (
     <div
@@ -18,7 +19,6 @@ export default async function singleTagPage({ params }) {
       {/* Mobile-only UI elements */}
       <MHeader />
       <MFooterMenu />
-      <MFloatingPlus />
 
       {/* Desktop sidebar - hidden on mobile */}
       <SideNav />
@@ -29,7 +29,7 @@ export default async function singleTagPage({ params }) {
         <div className="flex justify-start items-start h-full max-custom-sm:flex-col">
           <NotesList isInTagNotes={true} tagText={tag} />
           <UpdateNoteForm id={id} />
-          <NoteSettings id={id} />
+          <NoteSettings id={id} isInArchivedNotes={note?.isArchive} />
         </div>
       </div>
     </div>

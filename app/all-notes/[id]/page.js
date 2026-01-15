@@ -6,9 +6,11 @@ import NoteSettings from "@/app/_universal-components/_notes-components/note-set
 import NotesList from "@/app/_universal-components/_notes-components/notes-list";
 import SideNav from "@/app/_universal-components/_notes-components/side-nav";
 import UpdateNoteForm from "@/app/_universal-components/_notes-components/update-note-form";
+import { getUserNoteById } from "@/app/lib/note-service";
 
 export default async function NotePage({ params }) {
   const { id } = await params;
+  const note = await getUserNoteById({ id });
 
   return (
     <div
@@ -28,7 +30,7 @@ export default async function NotePage({ params }) {
         <div className="flex justify-start items-start h-full max-custom-sm:flex-col">
           <NotesList />
           <UpdateNoteForm id={id} />
-          <NoteSettings id={id} />
+          <NoteSettings id={id} isInArchivedNotes={note?.isArchive} />
         </div>
       </div>
     </div>

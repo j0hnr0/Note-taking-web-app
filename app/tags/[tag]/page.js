@@ -1,6 +1,5 @@
 import Header from "@/app/_universal-components/_notes-components/header";
 import MainContent from "@/app/_universal-components/_notes-components/main-content";
-import MFloatingPlus from "@/app/_universal-components/_notes-components/mobile/m-floating-plus";
 import MFooterMenu from "@/app/_universal-components/_notes-components/mobile/m-footer-menu";
 import MHeader from "@/app/_universal-components/_notes-components/mobile/m-header";
 import SideNav from "@/app/_universal-components/_notes-components/side-nav";
@@ -16,7 +15,6 @@ export default async function TagsPage({ params }) {
       {/* Mobile-only UI elements */}
       <MHeader />
       <MFooterMenu />
-      <MFloatingPlus />
 
       {/* Desktop sidebar - hidden on mobile */}
       <SideNav />
