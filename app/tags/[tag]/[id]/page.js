@@ -26,7 +26,7 @@ export default async function singleTagPage({ params }) {
       {/* Main content - visible on both mobile and desktop */}
       <div className="w-full h-full flex flex-col">
         <Header title={`Notes Tagged: ${tag}`} />
-        <div className="flex justify-start items-start h-full">
+        <div className="flex justify-start items-start h-full max-custom-sm:flex-col">
           <NotesList isInTagNotes={true} tagText={tag} />
           <UpdateNoteForm id={id} />
           <NoteSettings id={id} />
